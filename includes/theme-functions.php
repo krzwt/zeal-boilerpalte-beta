@@ -38,7 +38,8 @@ function acf_link( $link, $link_class = '' ) {
         esc_attr( $link_title ), // `aria-label` improves accessibility.
         $link_title
     );
-    /** use 
+    /** 
+     * Example Usage 
     * echo acf_link( $link, 'custom-button' );
     */
 }
@@ -72,8 +73,33 @@ function acf_image( $image_id, $size = 'medium_large', $class = '' ) {
         esc_attr( wp_get_attachment_metadata( $image_id )['width'] ?? '' ),
         esc_attr( wp_get_attachment_metadata( $image_id )['height'] ?? '' )
     );
-    /** use
+    /** 
+     * Example Usage
      * echo acf_image( $image_id, 'full', 'banner-image' );
      */
 }
 
+/**
+ * Debug function to print an array or object in a readable format.
+ *
+ * @param mixed $data  The data to print (array, object, string, etc.).
+ * @param bool  $exit  Whether to stop execution after printing (default: false).
+ */
+function printr( $data, $exit = false ) {
+    echo '<pre style="background: #222; color: #0f0; padding: 10px; border-radius: 5px; font-size: 14px;">';
+    print_r( $data );
+    echo '</pre>';
+
+    if ( $exit ) {
+        exit; // Stop execution if $exit is true (useful for debugging).
+    }
+    /**
+     * Example Usage
+     * 
+     * $my_array = array( 'name' => 'Example Name', 'role' => 'Example Designation' );
+     * printr( $my_array ); // Debug without stopping execution.
+     * 
+     * $my_object = (object) ['title' => 'Debugging', 'status' => 'Active'];
+     * printr( $my_object, true ); // Debug and stop execution.
+     */
+}
