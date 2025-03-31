@@ -109,3 +109,24 @@ function printr($data, $exit = false, $log = false)
 	 * printr( $my_array, false, true ); // Log to error_log.
 	 */
 }
+
+/**
+ * Trim text to a specific word count.
+ *
+ * @param string $text   The text to trim.
+ * @param int    $limit  The word limit.
+ * @return string        Trimmed text.
+ */
+function trim_excerpt($text, $limit = 55)
+{
+	if (str_word_count($text, 0) > $limit) {
+		$words = str_word_count($text, 2);
+		$pos   = array_keys($words);
+		$text  = substr($text, 0, $pos[$limit]) . '...';
+	}
+	return esc_html($text);
+	/**
+	 * Example Usage
+	 * echo trim_excerpt( $excerpt, 40 );
+	 */
+}
