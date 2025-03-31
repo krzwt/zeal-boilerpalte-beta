@@ -38,6 +38,42 @@ function acf_link( $link, $link_class = '' ) {
         esc_attr( $link_title ), // `aria-label` improves accessibility.
         $link_title
     );
-    /** use */
-    //echo acf_link( $link, 'custom-button' );
+    /** use 
+    * echo acf_link( $link, 'custom-button' );
+    */
 }
+
+/**
+ * Optimized function for rendering an ACF image using Image ID.
+ *
+ * @param int    $image_id   The image attachment ID.
+ * @param string $size       Image size ('full', 'medium_large', etc.).
+ * @param string $class      Additional CSS classes.
+ * @return string            HTML img tag or empty string.
+ */
+function acf_image( $image_id, $size = 'medium_large', $class = '' ) {
+    if ( empty( $image_id ) ) {
+        return ''; // Return empty string if image ID is not valid.
+    }
+
+    // Get image attributes.
+    $image_url  = wp_get_attachment_image_url( $image_id, $size );
+    $image_alt  = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+    $image_alt  = ! empty( $image_alt ) ? esc_attr( $image_alt ) : esc_attr( get_the_title() ) . ' Image';
+    $srcset     = wp_get_attachment_image_srcset( $image_id, $size );
+
+    // Return optimized image tag.
+    return sprintf(
+        '<img src="%s" srcset="%s" alt="%s" class="%s" loading="lazy" decoding="async" width="%s" height="%s">',
+        esc_url( $image_url ),
+        esc_attr( $srcset ),
+        $image_alt,
+        esc_attr( $class ),
+        esc_attr( wp_get_attachment_metadata( $image_id )['width'] ?? '' ),
+        esc_attr( wp_get_attachment_metadata( $image_id )['height'] ?? '' )
+    );
+    /** use
+     * echo acf_image( $image_id, 'full', 'banner-image' );
+     */
+}
+
