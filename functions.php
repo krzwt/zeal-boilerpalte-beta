@@ -22,9 +22,6 @@ if ( !defined( '_S_VERSION' ) ) {
  */
 define( 'THEME_PREFIX', 'mytheme' );
 
-define( 'PLACEHOLDER_IMAGE_URL', get_stylesheet_directory_uri().'/assets/images/placeholder-image.jpg' );
-define( 'PLACEHOLDER_IMAGE_ALT', 'Image ALT Text' );
-
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -80,7 +77,7 @@ add_action( 'after_setup_theme', 'mytheme_setup' );
  * Enqueue scripts and styles.
  */
 function mytheme_scripts() {
-	wp_enqueue_style( 'mytheme-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( THEME_PREFIX . '-style', get_stylesheet_uri(), array(), _S_VERSION );
 
 	wp_enqueue_script( 'jquery' );
 
