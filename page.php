@@ -23,8 +23,8 @@ get_header();
 				<div class="entry-header">
 					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 				</div><!-- .entry-header -->
-
-				<?php the_post_thumbnail(); ?>
+				
+				<?php echo entry_banner(); ?>
 
 				<div class="entry-content">
 					<?php

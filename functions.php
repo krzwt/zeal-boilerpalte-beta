@@ -76,14 +76,14 @@ add_action( 'after_setup_theme', 'mytheme_setup' );
  */
 function mytheme_scripts() {
 	wp_enqueue_style( THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION );
-    wp_enqueue_style( THEME_PREFIX . '-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', array(), _THEME_VERSION );
+    wp_enqueue_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), _THEME_VERSION );
 
 	wp_enqueue_script( 'jquery' );
 
-	if ( file_exists( get_stylesheet_directory() . '/assets/js/scripts.js' ) && is_user_logged_in() )  {
-        wp_register_script( THEME_PREFIX . '-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), _THEME_VERSION, true );
+	if (file_exists( get_template_directory() . '/assets/js/scripts.js' ) && is_user_logged_in()) {
+        wp_register_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), _THEME_VERSION, true );
     } else {
-        wp_register_script( THEME_PREFIX . '-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.min.js', array( 'jquery' ), _THEME_VERSION, true );
+        wp_register_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array( 'jquery' ), _THEME_VERSION, true );
     }
     wp_enqueue_script( THEME_PREFIX . '-scripts' );
 
@@ -117,3 +117,58 @@ require get_template_directory() . '/includes/theme-functions.php';
  * Register the Custom ACF Block for this theme.
  */
 require get_template_directory() . '/includes/acf-block-register.php';
+
+/**
+ * Placeholder image.
+ */
+function placeholder_banner($title = 'Banner') {
+    $placeholder_url = get_template_directory_uri() . '/assets/images/placeholder-banner.jpg';
+    return '<img src="' . esc_url($placeholder_url) . '" alt="' . esc_attr($title) . '">';
+}
+
+/**
+ * Entry banner.
+ */
+function entry_banner() {
+    if (is_singular()) {
+        $banner_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        $title = get_the_title();
+    } elseif (is_category()) {
+        $banner_image = '';
+        $title = single_cat_title('', false);
+    } elseif (is_tag()) {
+        $banner_image = '';
+        $title = single_tag_title('', false);
+    } elseif (is_post_type_archive()) {
+        $banner_image = '';
+        $title = post_type_archive_title('', false);
+    } elseif (is_archive()) {
+        $banner_image = '';
+        $title = get_the_archive_title();
+    } elseif (is_home()) {
+        $banner_image = '';
+        $title = get_the_title(get_option('page_for_posts'));
+    } elseif (is_search()) {
+        $banner_image = '';
+        $title = 'Search Results for: ' . get_search_query();
+    } elseif (is_404()) {
+        $banner_image = '';
+        $title = 'Page Not Found';
+    } else {
+        $banner_image = '';
+        $title = get_the_title();
+    }
+
+    echo '<div class="entry-banner">';
+
+		if (!empty($banner_image)) {
+			echo '<img src="' . esc_url($banner_image) . '" alt="' . esc_attr($title) . '">';
+		} else {
+			echo placeholder_banner($title);
+		}
+
+		echo '<div class="entry-header">';
+			echo '<h1 class="entry-title">' . esc_html($title) . '</h1>';
+		echo '</div>';
+    echo '</div>';
+}
