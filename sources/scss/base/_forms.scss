@@ -29,6 +29,14 @@ textarea {
 	outline: none;
 }
 
+textarea {
+	display: block;
+	height: $textarea-height-base;
+	padding: rem(10px,10px) rem(15px,15px);
+	resize: none;
+	overflow: auto;
+}
+
 input[type="url"],
 input[type="text"],
 input[type="password"],
@@ -57,14 +65,6 @@ select {
 		color: $input-color-placeholder;
 		opacity: 1;
 	}
-}
-
-textarea {
-	display: block;
-	height: $textarea-height-base;
-	padding: rem(10px,10px) rem(15px,15px);
-	resize: none;
-	overflow: auto;
 }
 
 select {

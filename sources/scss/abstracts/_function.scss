@@ -7,13 +7,13 @@ $decimal-value: true;
     $n: 1;
 
     // $number must be a number
-    @if type-of($number) !=number {
+    @if type-of($number) != number {
         @warn "#{$number} is not a number.";
         @return $number;
     }
 
     // $digits must be a unitless number
-    @if type-of($digits) !=number {
+    @if type-of($digits) != number {
         @warn "#{$digits} is not a number.";
         @return $number;
     } @else if not unitless($digits) {
@@ -25,11 +25,11 @@ $decimal-value: true;
         $n: $n * 10;
     }
 
-    @if $mode==round {
+    @if $mode == round {
         @return math.div(round($number * $n), $n);
-    } @else if $mode==ceil {
+    } @else if $mode == ceil {
         @return math.div(ceil($number * $n), $n);
-    } @else if $mode==floor {
+    } @else if $mode == floor {
         @return math.div(floor($number * $n), $n);
     } @else {
         @warn "#{$mode} is undefined keyword.";
@@ -47,19 +47,19 @@ $decimal-value: true;
 
 // PX to REM
 @function rem($target, $context: $base) {
-    @if $decimal-value==true {
+    @if $decimal-value == true {
         @return decimal-ceil(math.div($target, $context)) + 0;
     } @else {
-        @return math.div($target, $context)+0;
+        @return math.div($target, $context) + 0;
     }
 }
 
 // PX to EM
 @function em($target, $context: $base) {
-    @if $decimal-value==true {
+    @if $decimal-value == true {
         @return decimal-ceil(math.div($target, $context)) + 0;
     } @else {
-        @return math.div($target, $context)+0;
+        @return math.div($target, $context) + 0;
     }
 }
 

@@ -62,7 +62,7 @@ $size in $headingSize {
             font-weight: 400;
         }
 
-        @if $key=="h1" {
+        @if $key == "h1" {
             @include respond-below(xl) {
                 font-size: rem(42px,42px);
             }
@@ -70,7 +70,7 @@ $size in $headingSize {
             @include respond-below(md) {
                 font-size: rem(36px,36px);
             }
-        } @else if $key=="h2" {
+        } @else if $key == "h2" {
             @include respond-below(xl) {
                 font-size: rem(34px,34px);
             }
@@ -78,21 +78,21 @@ $size in $headingSize {
             @include respond-below(md) {
                 font-size: rem(29px,29px);
             }
-        } @else if $key=="h3" {
+        } @else if $key == "h3" {
             @include respond-below(md) {
                 font-size: rem(24px,24px);
             }
-        } @else if $key=="h4" {
+        } @else if $key == "h4" {
             @include respond-below(md) {
                 font-size: rem(20px,20px);
             }
-        } @else if $key=="h5" {
+        } @else if $key == "h5" {
             line-height: 1.3;
 
             @include respond-below(md) {
                 font-size: rem(18px,18px);
             }
-        } @else if $key=="h6" {
+        } @else if $key == "h6" {
             line-height: 1.3;
 
             @include respond-below(md) {
