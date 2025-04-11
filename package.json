@@ -11,7 +11,14 @@
   "scripts": {
     "dev": "webpack --mode development",
     "watch": "webpack --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint:js": "eslint -c config.eslint.js sources/**/*.js && echo \"No lint errors found in JS.\"",
+    "lint:js:fix": "eslint -c config.eslint.js sources/**/*.js --fix",
+    "lint:scss": "stylelint -c config.stylelint.js sources/**/*.scss && echo \"No lint errors found in SCSS.\"",
+    "lint:scss:fix": "stylelint -c config.stylelint.js sources/**/*.scss --fix",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:fix": "npm run lint:js:fix && npm run lint:scss:fix",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -38,7 +45,6 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
     "eslint": "^9.23.0",
-    "eslint-webpack-plugin": "^5.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "mini-css-extract-plugin": "^2.9.2",
@@ -48,7 +54,6 @@
     "stylelint": "^16.17.0",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
-    "stylelint-webpack-plugin": "^5.0.1",
     "terser-webpack-plugin": "^5.3.14",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
@@ -56,5 +61,13 @@
   "dependencies": {
     "swiper": "^11.2.6",
     "webpack-manifest-plugin": "^5.0.1"
+  },
+  "lint-staged": {
+    "sources/**/*.js": [
+      "eslint -c config.eslint.js --fix"
+    ],
+    "sources/**/*.scss": [
+      "stylelint -c config.stylelint.js --fix"
+    ]
   }
 }

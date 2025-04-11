@@ -1,12 +1,18 @@
-// eslint.config.js
+// config.eslint.js
+import js from '@eslint/js';
 
+/** @type {import("eslint").FlatConfig[]} */
 export default [
+  js.configs.recommended, // ESLint's recommended base rules
+
   {
     files: ["**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
       globals: {
+        $: 'readonly',        // jQuery
+        jQuery: 'readonly',    // Optional
         window: "readonly",
         document: "readonly",
       },

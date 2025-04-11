@@ -9,6 +9,7 @@
 
 %container {
   --gutter: #{$gutters};
+
   width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
   margin-left: auto;
   margin-right: auto;
@@ -20,6 +21,7 @@
 
 .container {
   --container-width: #{$container-width};
+
   @extend %container;
 
   &-fluid {
@@ -178,7 +180,6 @@
 
 /* column structure */
 $grid-columns: 12;
-
 $sidesY: top, bottom;
 $sidesX: left, right;
 

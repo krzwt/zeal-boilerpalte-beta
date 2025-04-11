@@ -47,19 +47,19 @@ $decimal-value: true;
 
 // PX to REM
 @function rem($target, $context: $base) {
-    @if ($decimal-value==true) {
-        @return decimal-ceil(math.div($target, $context)) + 0rem;
+    @if $decimal-value==true {
+        @return decimal-ceil(math.div($target, $context)) + 0;
     } @else {
-        @return math.div($target, $context)+0rem;
+        @return math.div($target, $context)+0;
     }
 }
 
 // PX to EM
 @function em($target, $context: $base) {
-    @if ($decimal-value==true) {
-        @return decimal-ceil(math.div($target, $context)) + 0em;
+    @if $decimal-value==true {
+        @return decimal-ceil(math.div($target, $context)) + 0;
     } @else {
-        @return math.div($target, $context)+0em;
+        @return math.div($target, $context)+0;
     }
 }
 

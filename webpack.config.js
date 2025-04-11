@@ -6,8 +6,6 @@ import TerserPlugin from "terser-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
-import StylelintPlugin from "stylelint-webpack-plugin";
-import ESLintPlugin from "eslint-webpack-plugin";
 
 // Get current file path and directory
 const filename = fileURLToPath(import.meta.url);
@@ -27,26 +25,6 @@ const plugins = [
     basePath: "",        // No double prefix
   }),
 ];
-
-// Add linting plugins only for production builds
-if (!isDev) {
-  plugins.push(
-    new StylelintPlugin({
-      configFile: path.resolve(dirname, "config/stylelint.config.js"),
-      context: "sources/scss",
-      files: "**/style.scss",
-      failOnError: true,
-      fix: true,
-    }),
-    new ESLintPlugin({
-      context: "sources/js",
-      extensions: ["js"],
-      overrideConfigFile: path.resolve(dirname, "config/eslint.config.js"),
-      failOnError: true,
-      fix: true,
-    })
-  );
-}
 
 // Export Webpack config object
 export default {

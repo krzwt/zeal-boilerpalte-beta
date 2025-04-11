@@ -16,7 +16,9 @@
 	border-radius: rem(2px,px);
 	background-color: $primary-100;
 	transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
+
 	--focucOutlineSpace: -1px;
+
 	user-select: none;
 
 	@include respond-below(md) {
@@ -26,10 +28,7 @@
 	&::before {
 		content: "";
 		position: absolute;
-		top: var(--focucOutlineSpace);
-		left: var(--focucOutlineSpace);
-		bottom: var(--focucOutlineSpace);
-		right: var(--focucOutlineSpace);
+		inset: var(--focucOutlineSpace) var(--focucOutlineSpace) var(--focucOutlineSpace) var(--focucOutlineSpace);
 		opacity: 0;
 		visibility: hidden;
 		transition: 0.4s ease;
@@ -48,6 +47,7 @@
 
 	&:focus {
 		--focucOutlineSpace: -4px;
+
 		outline: 0;
 		color: $white;
 
@@ -98,10 +98,7 @@
 		&::before {
 			content: "";
 			position: absolute;
-			top: -4px;
-			bottom: -4px;
-			left: -8px;
-			right: -8px;
+			inset: -4px -8px;
 			opacity: 0;
 			visibility: hidden;
 			transition: 0.4s ease;
@@ -112,6 +109,7 @@
 
 		&::after {
 			@include icon("c");
+
 			display: inline-flex;
 			font-size: em(9px, 16px);
 			margin-left: 8px;
@@ -123,7 +121,7 @@
 		a:hover & {
 			color: $secondary-100;
 			text-decoration: none;
-			border-color: currentColor;
+			border-color: currentcolor;
 
 			&::after {
 				transform: translateX(4px);
@@ -160,12 +158,11 @@
 		}
 
 		.bg-secondary & {
-
 			&:hover,
 			a:hover & {
 				color: $primary-100;
 
-				&:after {
+				&::after {
 					color: inherit;
 				}
 			}
@@ -177,5 +174,6 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	@extend %btn;
-	-webkit-appearance: button;
+
+	appearance: button;
 }
