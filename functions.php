@@ -2,8 +2,6 @@
 /**
  * mytheme functions and definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
  * @package mytheme
  */
 
@@ -13,8 +11,8 @@ if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( !defined( '_S_VERSION' ) ) {
-	define( '_S_VERSION', '1.0.0' );
+if ( ! defined( '_THEME_VERSION' ) ) {
+	define( '_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 }
 
 /**
@@ -77,9 +75,17 @@ add_action( 'after_setup_theme', 'mytheme_setup' );
  * Enqueue scripts and styles.
  */
 function mytheme_scripts() {
-	wp_enqueue_style( THEME_PREFIX . '-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION );
+    wp_enqueue_style( THEME_PREFIX . '-style', get_stylesheet_directory_uri() . '/assets/css/style.min.css', array(), _THEME_VERSION );
 
 	wp_enqueue_script( 'jquery' );
+
+	if ( file_exists( get_stylesheet_directory() . '/assets/js/scripts.js' ) && is_user_logged_in() )  {
+        wp_register_script( THEME_PREFIX . '-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), _THEME_VERSION, true );
+    } else {
+        wp_register_script( THEME_PREFIX . '-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.min.js', array( 'jquery' ), _THEME_VERSION, true );
+    }
+    wp_enqueue_script( THEME_PREFIX . '-scripts' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

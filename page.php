@@ -5,7 +5,7 @@
  * @package mytheme
  */
 
-if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
 	header('Status: 403 Forbidden');
 	header('HTTP/1.1 403 Forbidden');
 	exit;
@@ -24,7 +24,7 @@ get_header();
 					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 				</div><!-- .entry-header -->
 
-				<?php mytheme_post_thumbnail(); ?>
+				<?php the_post_thumbnail(); ?>
 
 				<div class="entry-content">
 					<?php
