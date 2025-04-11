@@ -1,16 +1,19 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/mixins" as *;
+
 :root {
-	--space-lg: #{rem(100px)};
-	--space-md: #{rem(80px)};
-	--space-sm: #{rem(50px)};
+	--space-lg: #{rem(100px,100px)};
+	--space-md: #{rem(80px,80px)};
+	--space-sm: #{rem(50px,50px)};
 
 	@include respond-below(xl) {
-		--space-lg: #{rem(50px)};
-		--space-md: #{rem(50px)};
+		--space-lg: #{rem(50px,50px)};
+		--space-md: #{rem(50px,50px)};
 	}
 
 	@include respond-below(md) {
-		--space-md: #{rem(40px)};
-		--space-sm: #{rem(30px)};
+		--space-md: #{rem(40px,40px)};
+		--space-sm: #{rem(30px,30px)};
 	}
 }
 
@@ -80,7 +83,7 @@
 
 /* Pagination */
 .pagination {
-	padding: rem(30px) 0;
+	padding: rem(30px,30px) 0;
 
 	ul {
 		@include flex-center;
@@ -91,7 +94,7 @@
 		li {
 			position: relative;
 			padding: 0;
-			margin: 0 rem(10px);
+			margin: 0 rem(10px,10px);
 			font-weight: 700;
 			color: rgba($primary-100, 0.60);
 
@@ -129,7 +132,7 @@
 					left: -4px;
 					right: -4px;
 					border: 1px solid $gray;
-					border-radius: rem(6px);
+					border-radius: rem(6px,6px);
 					opacity: 0;
 					visibility: hidden;
 				}
@@ -161,10 +164,10 @@
 
 /* Breadcrumb */
 .breadcrumbs {
-	margin-bottom: rem(48px);
+	margin-bottom: rem(48px,48px);
 
 	@include respond-below(xl) {
-		margin-bottom: rem(32px);
+		margin-bottom: rem(32px,32px);
 	}
 
 	ul {
@@ -205,13 +208,13 @@
 .sec-heading {
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: rem(50px);
+	margin-bottom: rem(50px,50px);
 
 	p {
-		font-size: rem(20px);
+		font-size: rem(20px,20px);
 
 		@include respond-below(md) {
-			font-size: rem(18px);
+			font-size: rem(18px,18px);
 		}
 	}
 }

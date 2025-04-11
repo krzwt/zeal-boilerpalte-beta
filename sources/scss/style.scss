@@ -1,14 +1,11 @@
 // Variable and Mixin
-@import "abstracts/core";
-
-// Vendor
-@import "vendors/core";
+@use "abstracts/core" as abstracts;
 
 // Base
-@import "base/core";
+@use "base/core" as base;
 
 // Layout
-@import "layout/core";
+@use "layout/core" as layout;
 
 // Components
-@import "components/core";
+@use "components/core" as components;

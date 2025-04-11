@@ -1,3 +1,6 @@
+@use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/mixins" as *;
+
 /*--- header ---*/
 .main-header {
 	position: relative;
@@ -9,7 +12,7 @@
 	.brand {
 		display: inline-flex;
 		vertical-align: middle;
-		width: rem(100px);
+		width: rem(100px,100px);
 	}
 
 	/* nav */
@@ -27,7 +30,7 @@
 
 			li {
 				padding: 0;
-				margin: 0 rem(15px);
+				margin: 0 rem(15px,15px);
 				list-style: none;
 
 				a {
