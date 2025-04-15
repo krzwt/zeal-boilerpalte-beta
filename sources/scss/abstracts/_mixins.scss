@@ -200,7 +200,7 @@
             padding-left: $gutters;
 
             @include respond-below(md) {
-                padding-left: rem(20px,20px);
+                padding-left: rem(20px);
             }
         }
     } @else if $position == "right" {
@@ -210,7 +210,7 @@
             padding-right: $gutters;
 
             @include respond-below(md) {
-                padding-right: rem(20px,20px);
+                padding-right: rem(20px);
             }
         }
     } @else {
