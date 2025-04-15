@@ -65,11 +65,11 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
+      "eslint -c config.eslint.js --fix",
       "git add"
     ],
     "*.scss": [
-      "stylelint --fix",
+     "stylelint -c config.stylelint.js --fix",
       "git add"
     ]
   }
