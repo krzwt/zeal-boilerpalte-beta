@@ -40,7 +40,7 @@ body {
 
 // Heading style
 @each $key,
-$size in $headingSize {
+$size in $heading-size {
 
     #{$key},
     .#{$key} {

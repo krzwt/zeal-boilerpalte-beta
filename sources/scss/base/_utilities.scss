@@ -168,7 +168,7 @@
 }
 
 /* background and text color */
-@each $name, $color in $bgColor-map {
+@each $name, $color in $bgcolor-map {
   .bg-#{$name} {
     background-color: $color;
   }
@@ -180,8 +180,8 @@
 
 /* column structure */
 $grid-columns: 12;
-$sidesY: top, bottom;
-$sidesX: left, right;
+$sides-y: top, bottom;
+$sides-x: left, right;
 
 @for $i from 1 through $grid-columns {
   .cell-#{$i} {
@@ -191,7 +191,7 @@ $sidesX: left, right;
 
 @if $spacing == true {
   @each $space in $spaceamounts {
-    @each $side in $sidesY {
+    @each $side in $sides-y {
       .m#{string.slice($side, 0, 1)}-#{$space},
       .m-#{$space},
       .my-#{$space} {
@@ -205,7 +205,7 @@ $sidesX: left, right;
       }
     }
 
-    @each $side in $sidesX {
+    @each $side in $sides-x {
       .m#{string.slice($side, 0, 1)}-#{$space},
       .m-#{$space},
       .mx-#{$space} {
@@ -232,7 +232,7 @@ $sidesX: left, right;
 
     @if $spacing == true {
       @each $space in $spaceamounts {
-        @each $side in $sidesY {
+        @each $side in $sides-y {
           .m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
           .m-#{$bp-key}-#{$space},
           .my-#{$bp-key}-#{$space} {
@@ -246,7 +246,7 @@ $sidesX: left, right;
           }
         }
 
-        @each $side in $sidesX {
+        @each $side in $sides-x {
           .m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
           .m-#{$bp-key}-#{$space},
           .mx-#{$bp-key}-#{$space} {

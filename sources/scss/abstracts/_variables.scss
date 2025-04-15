@@ -24,7 +24,7 @@ $body-bg: $white !default;
 $body-color: $black !default;
 
 // Heading font Size
-$headingSize: (
+$heading-size: (
   'h1': rem(50px,50px),
   'h2': rem(40px,40px),
   'h3': rem(32px,32px),
@@ -81,7 +81,7 @@ $spacing: true;
 $spaceamounts: (30);
 
 // Background and Text color classes(ex: .bg-white and .text-white)
-$bgColor-map: (
+$bgcolor-map: (
   'white' : $white,
   'dark' : $black
 );
