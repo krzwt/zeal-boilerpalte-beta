@@ -1,10 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-echo "🔧 Running production build before commit..."
-
-if ! npm run build; then
-  echo "❌ Build failed. Fix errors before committing!"
-  exit 1
-fi
-
-echo "✅ Build success. Running spell check..."
+npx --no-install lint-staged
