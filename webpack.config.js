@@ -93,7 +93,7 @@ export default {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          ecma: 2015,
+          ecma: 2023,
           compress: {
             drop_console: !isDev,
           },
@@ -103,7 +103,7 @@ export default {
     ],
   },
 
-  target: ["web", "es2015"],
+  target: ["web", "es2023"],
   
   devtool: "cheap-module-source-map",
 
