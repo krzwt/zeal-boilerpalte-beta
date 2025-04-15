@@ -1,5 +1,7 @@
 @use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
 @use "@scss/abstracts/mixins" as *;
+
 /* stylelint-disable max-nesting-depth */
 $mbnav: ".mbnav";
 $mbbg: $secondary-100;
@@ -11,7 +13,7 @@ $menulevel3: 14px;
 $hamburger: ".hamburger";
 
 #{$hamburger} {
-    --humburgerbox: #{rem(40px,40px)};
+    --humburgerbox: #{rem(40px)};
 
     display: none;
     align-items: center;
@@ -150,8 +152,8 @@ $hamburger: ".hamburger";
 
         > .menu-inner {
             max-height: 100%;
-            padding-top: rem(85px,85px);
-            padding-bottom: rem(20px,20px);
+            padding-top: rem(85px);
+            padding-bottom: rem(20px);
             background-color: $white;
             pointer-events: auto;
             overflow: hidden auto;
@@ -184,7 +186,7 @@ $hamburger: ".hamburger";
             margin: 0;
             list-style: none;
             color: $primary-100;
-            font-size: rem(20px,20px);
+            font-size: rem(20px);
             font-weight: 500;
             border-bottom: 1px solid $gray;
 

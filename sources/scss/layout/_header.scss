@@ -1,4 +1,5 @@
 @use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
 @use "@scss/abstracts/mixins" as *;
 
 /* --- header --- */
@@ -12,13 +13,13 @@
 
 	ul {
 		display: flex;
-		padding: 0;
 		margin: 0;
+		padding: 0;
 		list-style: none;
 
 		li {
+			margin: 0 rem(15px);
 			padding: 0;
-			margin: 0 rem(15px, 15px);
 			list-style: none;
 		}
 	}

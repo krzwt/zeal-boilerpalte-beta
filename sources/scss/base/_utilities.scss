@@ -1,4 +1,5 @@
 @use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
 @use "@scss/abstracts/mixins" as *;
 @use "sass:string";
 @use "sass:math";
@@ -15,7 +16,7 @@
 	margin-right: auto;
 
 	@include respond-below(md) {
-		--gutter: #{rem(20px, 20px)};
+		--gutter: #{rem(20px)};
 	}
 }
 
@@ -104,23 +105,23 @@
 
 	&none {
 		float: none;
-		margin: rem(20px, 20px) 0;
+		margin: rem(20px) 0;
 	}
 
 	&center {
 		display: block;
 		clear: both;
-		margin: rem(20px, 20px) auto;
+		margin: rem(20px) auto;
 	}
 
 	&left {
 		float: left;
-		margin: 0 rem(20px, 20px) rem(20px, 20px) 0;
+		margin: 0 rem(20px) rem(20px) 0;
 	}
 
 	&right {
 		float: right;
-		margin: 0 0 rem(20px, 20px) rem(20px, 20px);
+		margin: 0 0 rem(20px) rem(20px);
 	}
 }
 

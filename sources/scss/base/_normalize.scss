@@ -1,8 +1,8 @@
 @use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
 @use "@scss/abstracts/mixins" as *;
 
-/* Reset css
-   ========================================================================== */
+/* Reset css */
 html,
 body,
 div,
@@ -102,8 +102,7 @@ main {
 	display: block;
 }
 
-/* Text-level semantics
-   ========================================================================== */
+/* Text-level semantics */
 sub,
 sup {
 	position: relative;
@@ -120,8 +119,7 @@ sup {
 	top: -0.5em;
 }
 
-/* Embedded content
-   ========================================================================== */
+/* Embedded content */
 audio,
 video,
 iframe {
