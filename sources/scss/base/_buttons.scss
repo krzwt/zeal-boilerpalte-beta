@@ -2,6 +2,8 @@
 @use "@scss/abstracts/mixins" as *;
 
 %btn {
+	--focuc-outline-space: -1px;
+
 	position: relative;
 	display: inline-block;
 	vertical-align: top;
@@ -16,9 +18,6 @@
 	border-radius: rem(2px,px);
 	background-color: $primary-100;
 	transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
-
-	--focucOutlineSpace: -1px;
-
 	user-select: none;
 
 	@include respond-below(md) {
@@ -28,7 +27,7 @@
 	&::before {
 		content: "";
 		position: absolute;
-		inset: var(--focucOutlineSpace) var(--focucOutlineSpace) var(--focucOutlineSpace) var(--focucOutlineSpace);
+		inset: var(--focuc-outline-space);
 		opacity: 0;
 		visibility: hidden;
 		transition: 0.4s ease;
@@ -46,7 +45,7 @@
 	}
 
 	&:focus {
-		--focucOutlineSpace: -4px;
+		--focuc-outline-space: -4px;
 
 		outline: 0;
 		color: $white;

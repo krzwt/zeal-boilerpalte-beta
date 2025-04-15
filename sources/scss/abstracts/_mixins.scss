@@ -136,19 +136,23 @@
 
 // input placeholder style
 @mixin placeholder {
-    &::input-placeholder {
+    &::-webkit-input-placeholder {
         @content;
     }
-
-    &:placeholder {
+    
+    &:-moz-placeholder {
         @content;
     }
-
+    
+    &::-moz-placeholder {
+        @content;
+    }
+    
+    &:-ms-input-placeholder {
+        @content;
+    }
+    
     &::placeholder {
-        @content;
-    }
-
-    &:input-placeholder {
         @content;
     }
 }
@@ -226,7 +230,7 @@
 }
 
 // Picture Image
-@mixin pictureImg($pos: absolute) {
+@mixin pictureimg($pos: absolute) {
     position: relative;
 
     picture {
@@ -246,7 +250,7 @@
 }
 
 // Img fit
-@mixin imgFit($pos: absolute) {
+@mixin imgfit($pos: absolute) {
     img {
         position: $pos;
         top: 0;

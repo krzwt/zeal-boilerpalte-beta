@@ -3,7 +3,7 @@
 
 :root {
 	--space-lg: #{rem(100px,100px)};
-	--space-md: #{rem(80px,80px)};
+	--space-md: #{rem(75px,75px)};
 	--space-sm: #{rem(50px,50px)};
 
 	@include respond-below(xl) {
@@ -85,133 +85,75 @@
 
 	ul {
 		@include flex-center;
-
+		
 		padding: 0;
 		margin: 0;
 		list-style: none;
+	}
 
-		li {
-			position: relative;
-			padding: 0;
-			margin: 0 rem(10px,10px);
-			font-weight: 700;
+	li {
+		position: relative;
+		padding: 0;
+		margin: 0 rem(10px,10px);
+		font-weight: 700;
+		color: rgba($primary-100, 0.60);
+
+		a {
+			&:hover {
+				color: $secondary-100 !important;
+			}
+		}
+
+		a:not(.prev, .next),
+		span {
 			color: rgba($primary-100, 0.60);
+			font-weight: 700;
+			line-height: 1;
+			text-decoration: none;
+			border: none;
+			transition: 0.4s ease background-color, 0.4s ease color;
 
-			a {
-				&:hover {
-					color: $secondary-100 !important;
-				}
-			}
-
-			a:not(.prev, .next),
-			span {
-				color: rgba($primary-100, 0.60);
-				font-weight: 700;
-				line-height: 1;
-				text-decoration: none;
-				border: none;
-				transition: 0.4s ease background-color, 0.4s ease color;
-
-				&.active {
-					border-color: $primary-100;
-				}
-			}
-
-			.prev,
-			.next {
-				color: $primary-100;
-				text-decoration: none;
-				cursor: pointer;
-
-				&::after {
-					content: '';
-					position: absolute;
-					inset: -2px -4px;
-					border: 1px solid $gray;
-					border-radius: rem(6px,6px);
-					opacity: 0;
-					visibility: hidden;
-				}
-
-				&:hover {
-					color: $secondary-100;
-				}
-
-				&:focus {
-					&::after {
-						outline: 0;
-						opacity: 1;
-						visibility: visible;
-					}
-				}
-
-				&.disabled {
-					opacity: 0.60;
-					pointer-events: none;
-				}
-			}
-
-			.current {
-				color: $primary-100;
+			&.active {
+				border-color: $primary-100;
 			}
 		}
-	}
-}
 
-/* Breadcrumb */
-.breadcrumbs {
-	margin-bottom: rem(48px,48px);
+		.prev,
+		.next {
+			color: $primary-100;
+			text-decoration: none;
+			cursor: pointer;
 
-	@include respond-below(xl) {
-		margin-bottom: rem(32px,32px);
-	}
-
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-
-		li {
-			display: flex;
-			align-items: center;
-			padding: 0;
-
-			a {
-				font-weight: 700;
-				text-decoration: none;
+			&::after {
+				content: '';
+				position: absolute;
+				inset: -2px -4px;
+				border: 1px solid $gray;
+				border-radius: rem(6px,6px);
+				opacity: 0;
+				visibility: hidden;
 			}
 
-			span {
-				color: $primary-100;
-				font-weight: 400;
+			&:hover {
+				color: $secondary-100;
 			}
 
-			&:not(:last-child) {
+			&:focus {
 				&::after {
-					@include icon('c');
-
-					font-size: 6px;
-					color: $primary-100;
-					margin: 3px 8px 0;
+					outline: 0;
+					opacity: 1;
+					visibility: visible;
 				}
 			}
+
+			&.disabled {
+				opacity: 0.60;
+				pointer-events: none;
+			}
 		}
-	}
-}
 
-/* Section Heading */
-.sec-heading {
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: rem(50px,50px);
-
-	p {
-		font-size: rem(20px,20px);
-
-		@include respond-below(md) {
-			font-size: rem(18px,18px);
+		.current {
+			color: $primary-100;
 		}
 	}
 }

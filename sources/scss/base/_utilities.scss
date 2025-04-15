@@ -8,174 +8,174 @@
  */
 
 %container {
-  --gutter: #{$gutters};
+	--gutter: #{$gutters};
 
-  width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
-  margin-left: auto;
-  margin-right: auto;
+	width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
+	margin-left: auto;
+	margin-right: auto;
 
-  @include respond-below(md) {
-    --gutter: #{rem(20px, 20px)};
-  }
+	@include respond-below(md) {
+		--gutter: #{rem(20px, 20px)};
+	}
 }
 
 .container {
-  --container-width: #{$container-width};
+	--container-width: #{$container-width};
 
-  @extend %container;
+	@extend %container;
 
-  &-fluid {
-    @extend %container;
-  }
+	&-fluid {
+		@extend %container;
+	}
+}
+
+[class*="cell-"] {
+	position: relative;
+	width: 100%;
+	padding-left: $row-gutters * 0.5;
+	padding-right: $row-gutters * 0.5;
 }
 
 /* row and column */
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: $row-gutters * -0.5;
-  margin-left: $row-gutters * -0.5;
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: $row-gutters * -0.5;
+	margin-left: $row-gutters * -0.5;
 
-  &.no-gutters {
-    margin-right: 0;
-    margin-left: 0;
+	&.no-gutters {
+		margin-right: 0;
+		margin-left: 0;
 
-    > [class*="cell-"] {
-      padding-right: 0;
-      padding-left: 0;
-    }
-  }
-}
-
-[class*="cell-"] {
-  position: relative;
-  width: 100%;
-  padding-left: $row-gutters * 0.5;
-  padding-right: $row-gutters * 0.5;
+		>[class*="cell-"] {
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
 }
 
 /* display helpers */
 .d {
-  &-none {
-    display: none;
-  }
+	&-none {
+		display: none;
+	}
 
-  &-block {
-    display: block;
-  }
+	&-block {
+		display: block;
+	}
 
-  &-flex {
-    display: flex;
-    flex-wrap: wrap;
+	&-flex {
+		display: flex;
+		flex-wrap: wrap;
 
-    &-inline {
-      display: inline-flex;
-    }
+		&-inline {
+			display: inline-flex;
+		}
 
-    img {
-      align-self: center;
-    }
-  }
+		img {
+			align-self: center;
+		}
+	}
 }
 
 .flex-nowrap {
-  flex-wrap: nowrap;
+	flex-wrap: nowrap;
 }
 
 /* alignment helpers */
 .align {
-  &-items {
-    &-start {
-      align-items: flex-start;
-    }
+	&-items {
+		&-start {
+			align-items: flex-start;
+		}
 
-    &-center {
-      align-items: center;
-    }
+		&-center {
+			align-items: center;
+		}
 
-    &-end {
-      align-items: flex-end;
-    }
-  }
+		&-end {
+			align-items: flex-end;
+		}
+	}
 
-  &-content-center {
-    align-content: center;
-  }
+	&-content-center {
+		align-content: center;
+	}
 
-  &none {
-    float: none;
-    margin: rem(20px, 20px) 0;
-  }
+	&none {
+		float: none;
+		margin: rem(20px, 20px) 0;
+	}
 
-  &center {
-    display: block;
-    clear: both;
-    margin: rem(20px, 20px) auto;
-  }
+	&center {
+		display: block;
+		clear: both;
+		margin: rem(20px, 20px) auto;
+	}
 
-  &left {
-    float: left;
-    margin: 0 rem(20px, 20px) rem(20px, 20px) 0;
-  }
+	&left {
+		float: left;
+		margin: 0 rem(20px, 20px) rem(20px, 20px) 0;
+	}
 
-  &right {
-    float: right;
-    margin: 0 0 rem(20px, 20px) rem(20px, 20px);
-  }
+	&right {
+		float: right;
+		margin: 0 0 rem(20px, 20px) rem(20px, 20px);
+	}
 }
 
 .justify {
-  &-content {
-    &-start {
-      justify-content: flex-start;
-    }
+	&-content {
+		&-start {
+			justify-content: flex-start;
+		}
 
-    &-center {
-      justify-content: center;
-    }
+		&-center {
+			justify-content: center;
+		}
 
-    &-end {
-      justify-content: flex-end;
-    }
+		&-end {
+			justify-content: flex-end;
+		}
 
-    &-between {
-      justify-content: space-between;
-    }
+		&-between {
+			justify-content: space-between;
+		}
 
-    &-around {
-      justify-content: space-around;
-    }
+		&-around {
+			justify-content: space-around;
+		}
 
-    &-evenly {
-      justify-content: space-evenly;
-    }
-  }
+		&-evenly {
+			justify-content: space-evenly;
+		}
+	}
 }
 
 /* text alignment */
 .text {
-  &-center {
-    text-align: center;
-  }
+	&-center {
+		text-align: center;
+	}
 
-  &-right {
-    text-align: right;
-  }
+	&-right {
+		text-align: right;
+	}
 
-  &-left {
-    text-align: left;
-  }
+	&-left {
+		text-align: left;
+	}
 }
 
 /* background and text color */
 @each $name, $color in $bgcolor-map {
-  .bg-#{$name} {
-    background-color: $color;
-  }
+	.bg-#{$name} {
+		background-color: $color;
+	}
 
-  .text-#{$name} {
-    color: $color;
-  }
+	.text-#{$name} {
+		color: $color;
+	}
 }
 
 /* column structure */
@@ -184,160 +184,160 @@ $sides-y: top, bottom;
 $sides-x: left, right;
 
 @for $i from 1 through $grid-columns {
-  .cell-#{$i} {
-    width: math.percentage(math.div($i, $grid-columns));
-  }
+	.cell-#{$i} {
+		width: math.percentage(math.div($i, $grid-columns));
+	}
 }
 
 @if $spacing == true {
-  @each $space in $spaceamounts {
-    @each $side in $sides-y {
-      .m#{string.slice($side, 0, 1)}-#{$space},
-      .m-#{$space},
-      .my-#{$space} {
-        margin-#{$side}: #{math.div($space, 16)}rem;
-      }
+	@each $space in $spaceamounts {
+		@each $side in $sides-y {
 
-      .p#{string.slice($side, 0, 1)}-#{$space},
-      .p-#{$space},
-      .py-#{$space} {
-        padding-#{$side}: #{math.div($space, 16)}rem;
-      }
-    }
+			.m#{string.slice($side, 0, 1)}-#{$space},
+			.m-#{$space},
+			.my-#{$space} {
+				margin-#{$side}: #{math.div($space, 16)}rem;
+			}
 
-    @each $side in $sides-x {
-      .m#{string.slice($side, 0, 1)}-#{$space},
-      .m-#{$space},
-      .mx-#{$space} {
-        margin-#{$side}: #{math.div($space, 16)}rem;
-      }
+			.p#{string.slice($side, 0, 1)}-#{$space},
+			.p-#{$space},
+			.py-#{$space} {
+				padding-#{$side}: #{math.div($space, 16)}rem;
+			}
+		}
 
-      .p#{string.slice($side, 0, 1)}-#{$space},
-      .p-#{$space},
-      .px-#{$space} {
-        padding-#{$side}: #{math.div($space, 16)}rem;
-      }
-    }
-  }
+		@each $side in $sides-x {
+
+			.m#{string.slice($side, 0, 1)}-#{$space},
+			.m-#{$space},
+			.mx-#{$space} {
+				margin-#{$side}: #{math.div($space, 16)}rem;
+			}
+
+			.p#{string.slice($side, 0, 1)}-#{$space},
+			.p-#{$space},
+			.px-#{$space} {
+				padding-#{$side}: #{math.div($space, 16)}rem;
+			}
+		}
+	}
 }
 
 /* responsive variants */
 @each $bp-key, $bp in $breakpoints {
-  @include respond-above($bp-key) {
-    @for $i from 1 through $grid-columns {
-      .cell-#{$bp-key}-#{$i} {
-        width: math.percentage(math.div($i, $grid-columns));
-      }
-    }
+	@include respond-above($bp-key) {
+		@for $i from 1 through $grid-columns {
+			.cell-#{$bp-key}-#{$i} {
+				width: math.percentage(math.div($i, $grid-columns));
+			}
+		}
 
-    @if $spacing == true {
-      @each $space in $spaceamounts {
-        @each $side in $sides-y {
-          .m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
-          .m-#{$bp-key}-#{$space},
-          .my-#{$bp-key}-#{$space} {
-            margin-#{$side}: #{math.div($space, 16)}rem;
-          }
+		@if $spacing == true {
+			@each $space in $spaceamounts {
+				@each $side in $sides-y {
 
-          .p#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
-          .p-#{$bp-key}-#{$space},
-          .py-#{$bp-key}-#{$space} {
-            padding-#{$side}: #{math.div($space, 16)}rem;
-          }
-        }
+					.m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.m-#{$bp-key}-#{$space},
+					.my-#{$bp-key}-#{$space} {
+						margin-#{$side}: #{math.div($space, 16)}rem;
+					}
 
-        @each $side in $sides-x {
-          .m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
-          .m-#{$bp-key}-#{$space},
-          .mx-#{$bp-key}-#{$space} {
-            margin-#{$side}: #{math.div($space, 16)}rem;
-          }
+					.p#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.p-#{$bp-key}-#{$space},
+					.py-#{$bp-key}-#{$space} {
+						padding-#{$side}: #{math.div($space, 16)}rem;
+					}
+				}
 
-          .p#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
-          .p-#{$bp-key}-#{$space},
-          .px-#{$bp-key}-#{$space} {
-            padding-#{$side}: #{math.div($space, 16)}rem;
-          }
-        }
-      }
-    }
+				@each $side in $sides-x {
 
-    @if $advance-utilities == true {
-      .d-#{$bp-key} {
-        &-none {
-          display: none;
-        }
+					.m#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.m-#{$bp-key}-#{$space},
+					.mx-#{$bp-key}-#{$space} {
+						margin-#{$side}: #{math.div($space, 16)}rem;
+					}
 
-        &-block {
-          display: block;
-        }
+					.p#{string.slice($side, 0, 1)}-#{$bp-key}-#{$space},
+					.p-#{$bp-key}-#{$space},
+					.px-#{$bp-key}-#{$space} {
+						padding-#{$side}: #{math.div($space, 16)}rem;
+					}
+				}
+			}
+		}
 
-        &-flex {
-          display: flex;
-        }
-      }
+		@if $advance-utilities == true {
+			.d-#{$bp-key} {
+				&-none {
+					display: none;
+				}
 
-      .align-#{$bp-key} {
-        &-items {
-          &-start {
-            align-items: flex-start;
-          }
+				&-block {
+					display: block;
+				}
 
-          &-center {
-            align-items: center;
-          }
+				&-flex {
+					display: flex;
+				}
+			}
 
-          &-end {
-            align-items: flex-end;
-          }
-        }
+			.align-#{$bp-key} {
+				&-items-start {
+					align-items: flex-start;
+				}
 
-        &-content-center {
-          align-content: center;
-        }
-      }
+				&-items-center {
+					align-items: center;
+				}
 
-      .justify-#{$bp-key} {
-        &-content {
-          &-start {
-            justify-content: flex-start;
-          }
+				&-items-end {
+					align-items: flex-end;
+				}
 
-          &-center {
-            justify-content: center;
-          }
+				&-content-center {
+					align-content: center;
+				}
+			}
 
-          &-end {
-            justify-content: flex-end;
-          }
+			.justify-#{$bp-key} {
+				&-content-start {
+					justify-content: flex-start;
+				}
 
-          &-between {
-            justify-content: space-between;
-          }
+				&-content-center {
+					justify-content: center;
+				}
 
-          &-around {
-            justify-content: space-around;
-          }
+				&-content-end {
+					justify-content: flex-end;
+				}
 
-          &-evenly {
-            justify-content: space-evenly;
-          }
-        }
-      }
+				&-content-between {
+					justify-content: space-between;
+				}
 
-      .text-#{$bp-key} {
-        &-center {
-          text-align: center;
-        }
+				&-content-around {
+					justify-content: space-around;
+				}
 
-        &-right {
-          text-align: right;
-        }
+				&-content-evenly {
+					justify-content: space-evenly;
+				}
+			}
 
-        &-left {
-          text-align: left;
-        }
-      }
-    }
-  }
+			.text-#{$bp-key} {
+				&-center {
+					text-align: center;
+				}
+
+				&-right {
+					text-align: right;
+				}
+
+				&-left {
+					text-align: left;
+				}
+			}
+		}
+	}
 }
