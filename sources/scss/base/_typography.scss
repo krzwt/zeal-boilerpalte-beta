@@ -164,12 +164,14 @@ blockquote {
     background-color: $gray;
     border-left: rem(4px) solid $primary-100;
 
+    /* stylelint-disable no-descending-specificity */
     p {
         font-size: inherit;
         font-weight: inherit;
         line-height: inherit;
         color: inherit;
     }
+    /* stylelint-enable no-descending-specificity */
 }
 
 hr {
@@ -214,16 +216,6 @@ a {
     &.tab-outline {
         outline-offset: rem(3px);
         outline: 1px solid;
-    }
-
-    p & {
-        font-weight: 700;
-
-        &:focus {
-            outline: none;
-            border: 1px solid;
-            border-radius: 6px;
-        }
     }
 }
 
