@@ -21,10 +21,15 @@
 			margin: 0 rem(15px);
 			padding: 0;
 			list-style: none;
-		}
-	}
 
-	a {
-		text-decoration: none;
+			a {
+				color: red;
+				text-decoration: none;
+
+				span {
+					display: none;
+				}
+			}
+		}
 	}
 }

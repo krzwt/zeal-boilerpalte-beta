@@ -979,6 +979,8 @@ blockquote {
   color: #000;
   background-color: #dee3e2;
   border-left: 0.25rem solid #1eb2a6;
+  /* stylelint-disable no-descending-specificity */
+  /* stylelint-enable no-descending-specificity */
 }
 blockquote p {
   font-size: inherit;
@@ -1025,14 +1027,6 @@ a:hover {
 a.tab-outline {
   outline-offset: 0.188rem;
   outline: 1px solid;
-}
-p a {
-  font-weight: 700;
-}
-p a:focus {
-  outline: none;
-  border: 1px solid;
-  border-radius: 6px;
 }
 
 /* Tables */
@@ -2728,6 +2722,9 @@ select:-webkit-autofill:focus {
   padding: 0;
   list-style: none;
 }
+.navigation ul li a span {
+  display: none;
+}
 .navigation a {
   text-decoration: none;
 }
@@ -2768,4 +2765,4 @@ select:-webkit-autofill:focus {
   text-transform: uppercase;
 }
 
-/*# sourceMappingURL=main.d1583744fc4ccff3cf40.css.map*/
+/*# sourceMappingURL=main.45f981b3cbe4906a8bd1.css.map*/
