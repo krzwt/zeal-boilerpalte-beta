@@ -44,6 +44,11 @@ function mytheme_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	/**
+	 * Enable support for wide alignment.
+	 */
+	add_theme_support( 'align-wide' );
+
+	/**
 	* Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	*/
 	add_theme_support(

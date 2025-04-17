@@ -21,9 +21,7 @@ body {
     min-height: 100%;
     height: auto;
     color: $body-color;
-
-    // font-size: $font-size-base;
-    font-size: 16px;
+    font-size: $font-size-base;
     font-family: $font-family-base;
     line-height: 1.5;
     font-weight: 500;
@@ -47,7 +45,7 @@ body {
         margin-bottom: $hgroup-margin-bottom;
         color: $hgroup-color;
         font-family: $hgroup-font-family;
-        font-size: 30px;
+        font-size: $size;
         font-weight: $hgroup-font-weight;
         line-height: $hgroup-line-height;
         word-break: keep-all;
@@ -150,101 +148,6 @@ ul {
             color: $secondary-100;
             font-size: 1.2em;
         }
-
-        .bullet-styled {
-            position: relative;
-            list-style: none;
-
-            &::before {
-                position: absolute;
-                left: calc(var(--ulol-left-padding) * -1);
-                color: $primary-100;
-                font-weight: 700;
-                line-height: 1;
-            }
-
-            >ul {
-                >li {
-                    &::before {
-                        border: 1px solid $gray;
-                        height: rem(6px);
-                        width: rem(6px);
-                    }
-
-                    >ul {
-                        >li {
-                            --ulbox: 4px;
-
-                            &::marker {
-                                color: currentcolor;
-                            }
-
-                            &::before {
-                                top: em(16px);
-                                background: currentcolor;
-                                border-radius: 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .bullet-check {
-            padding: 0 0 0 rem(36px);
-            margin-bottom: rem(10px);
-            position: relative;
-
-            &::before {
-                @include icon("k");
-
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: var(--ulbox);
-                height: var(--ulbox);
-                font-size: 24px;
-                color: $primary-100;
-
-                @include flex-center;
-
-                .bg-dark & {
-                    // color: $white;
-                }
-            }
-
-            &.-secondary {
-                &::before {
-                    color: $secondary-100;
-                }
-            }
-        }
-    }
-}
-
-ol {
-    >li {
-        .bullet-styled & {
-            counter-increment: counter-1;
-
-            &::before {
-                content: counter(counter-1) ". ";
-                top: 10px;
-                font-size: em(14px);
-            }
-
-            >ol {
-                counter-reset: counter-2;
-
-                >li {
-                    counter-increment: counter-2;
-
-                    &::before {
-                        content: counter(counter-2, lower-alpha) ". ";
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -320,14 +223,6 @@ a {
             outline: none;
             border: 1px solid;
             border-radius: 6px;
-        }
-    }
-
-    .bg-dark & {
-        color: $white;
-
-        &:hover {
-            color: $secondary-100;
         }
     }
 }

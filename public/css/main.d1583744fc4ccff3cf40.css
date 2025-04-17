@@ -734,7 +734,7 @@ body {
   min-height: 100%;
   height: auto;
   color: #000;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: "Open Sans", "Arial", sans-serif;
   line-height: 1.5;
   font-weight: 500;
@@ -754,7 +754,7 @@ h1,
   margin-bottom: 0.938rem;
   color: #000;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 3.125rem;
   font-weight: 700;
   line-height: 1.1;
   word-break: keep-all;
@@ -787,7 +787,7 @@ h2,
   margin-bottom: 0.938rem;
   color: #000;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
   word-break: keep-all;
@@ -820,7 +820,7 @@ h3,
   margin-bottom: 0.938rem;
   color: #000;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.1;
   word-break: keep-all;
@@ -847,7 +847,7 @@ h4,
   margin-bottom: 0.938rem;
   color: #000;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 1.563rem;
   font-weight: 700;
   line-height: 1.1;
   word-break: keep-all;
@@ -874,7 +874,7 @@ h5,
   margin-bottom: 0.938rem;
   color: #000;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.1;
   word-break: keep-all;
@@ -902,7 +902,7 @@ h6,
   margin-bottom: 0.938rem;
   color: #000;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.1;
   word-break: keep-all;
@@ -965,77 +965,6 @@ p:last-child {
 ul > li::marker {
   color: #ffa34d;
   font-size: 1.2em;
-}
-ul > li .bullet-styled {
-  position: relative;
-  list-style: none;
-}
-ul > li .bullet-styled::before {
-  position: absolute;
-  left: calc(var(--ulol-left-padding) * -1);
-  color: #1eb2a6;
-  font-weight: 700;
-  line-height: 1;
-}
-ul > li .bullet-styled > ul > li::before {
-  border: 1px solid #dee3e2;
-  height: 0.375rem;
-  width: 0.375rem;
-}
-ul > li .bullet-styled > ul > li > ul > li {
-  --ulbox: 4px;
-}
-ul > li .bullet-styled > ul > li > ul > li::marker {
-  color: currentcolor;
-}
-ul > li .bullet-styled > ul > li > ul > li::before {
-  top: em(16px);
-  background: currentcolor;
-  border-radius: 0;
-}
-ul > li .bullet-check {
-  padding: 0 0 0 2.25rem;
-  margin-bottom: 0.625rem;
-  position: relative;
-}
-ul > li .bullet-check::before {
-  content: "k";
-  font-family: "iconfontfamily" !important;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  text-transform: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--ulbox);
-  height: var(--ulbox);
-  font-size: 24px;
-  color: #1eb2a6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-ul > li .bullet-check.-secondary::before {
-  color: #ffa34d;
-}
-
-.bullet-styled ol > li {
-  counter-increment: counter-1;
-}
-.bullet-styled ol > li::before {
-  content: counter(counter-1) ". ";
-  top: 10px;
-  font-size: em(14px);
-}
-.bullet-styled ol > li > ol {
-  counter-reset: counter-2;
-}
-.bullet-styled ol > li > ol > li {
-  counter-increment: counter-2;
-}
-.bullet-styled ol > li > ol > li::before {
-  content: counter(counter-2, lower-alpha) ". ";
 }
 
 blockquote {
@@ -1105,12 +1034,6 @@ p a:focus {
   border: 1px solid;
   border-radius: 6px;
 }
-.bg-dark a {
-  color: #fff;
-}
-.bg-dark a:hover {
-  color: #ffa34d;
-}
 
 /* Tables */
 table {
@@ -1152,14 +1075,14 @@ table td {
 /**
  * Main content containers
  */
-.container-fluid, .container {
+.alignfull, .alignwide, .container-fluid, .container {
   --gutter: 3.125rem;
   width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
   margin-left: auto;
   margin-right: auto;
 }
 @media (max-width: 767px) {
-  .container-fluid, .container {
+  .alignfull, .alignwide, .container-fluid, .container {
     --gutter: 1.25rem;
   }
 }
@@ -2018,6 +1941,11 @@ table td {
     text-align: left;
   }
 }
+/* WordPress default alignment */
+.alignwide {
+  --container-width: 73.125rem;
+}
+
 input[type=button],
 input[type=reset],
 input[type=submit], .btn {
@@ -2060,9 +1988,7 @@ input[type=submit]::before, .btn::before {
 }
 input[type=button]:hover,
 input[type=reset]:hover,
-input[type=submit]:hover, .btn:hover, a:hover input[type=button],
-a:hover input[type=reset],
-a:hover input[type=submit], a:hover .btn {
+input[type=submit]:hover, .btn:hover {
   color: #1eb2a6;
   background-color: #ffa34d;
   text-decoration: none;
@@ -2081,47 +2007,11 @@ input[type=submit]:focus::before, .btn:focus::before {
   opacity: 1;
   visibility: visible;
 }
-.bg-dark input[type=button],
-.bg-dark input[type=reset],
-.bg-dark input[type=submit], .bg-dark .btn, .bg-secondary input[type=button],
-.bg-secondary input[type=reset],
-.bg-secondary input[type=submit], .bg-secondary .btn, input.-dark[type=button],
-input.-dark[type=reset],
-input.-dark[type=submit], .-dark.btn {
-  color: #1eb2a6 !important;
-  background-color: #fff;
-}
-.bg-dark input[type=button]:hover,
-.bg-dark input[type=reset]:hover,
-.bg-dark input[type=submit]:hover, .bg-dark .btn:hover, a:hover .bg-dark input[type=button],
-a:hover .bg-dark input[type=reset],
-a:hover .bg-dark input[type=submit], a:hover .bg-dark .btn, .bg-secondary input[type=button]:hover,
-.bg-secondary input[type=reset]:hover,
-.bg-secondary input[type=submit]:hover, .bg-secondary .btn:hover, a:hover .bg-secondary input[type=button],
-a:hover .bg-secondary input[type=reset],
-a:hover .bg-secondary input[type=submit], a:hover .bg-secondary .btn, input.-dark[type=button]:hover,
-input.-dark[type=reset]:hover,
-input.-dark[type=submit]:hover, .-dark.btn:hover, a:hover input.-dark[type=button],
-a:hover input.-dark[type=reset],
-a:hover input.-dark[type=submit], a:hover .-dark.btn {
-  background-color: #ffa34d;
-}
-.bg-dark input[type=button]:focus::before,
-.bg-dark input[type=reset]:focus::before,
-.bg-dark input[type=submit]:focus::before, .bg-dark .btn:focus::before, .bg-secondary input[type=button]:focus::before,
-.bg-secondary input[type=reset]:focus::before,
-.bg-secondary input[type=submit]:focus::before, .bg-secondary .btn:focus::before, input.-dark[type=button]:focus::before,
-input.-dark[type=reset]:focus::before,
-input.-dark[type=submit]:focus::before, .-dark.btn:focus::before {
-  border-color: #fff;
-}
-input.-sm[type=button],
-input.-sm[type=reset],
-input.-sm[type=submit], .-sm.btn {
+
+.btn-sm {
   font-size: 0.75rem;
   padding: 0.25rem 0.563rem;
 }
-
 .btn-link {
   position: relative;
   color: #1eb2a6;
@@ -2151,41 +2041,26 @@ input.-sm[type=submit], .-sm.btn {
   font-weight: normal;
   text-transform: none;
   display: inline-flex;
-  font-size: em(9px);
+  font-size: 0.563rem;
   margin-left: 8px;
   color: #1eb2a6;
   transition: 0.4s ease;
 }
-.btn-link:hover, a:hover .btn-link {
+.btn-link:hover {
   color: #ffa34d;
   text-decoration: none;
   border-color: currentcolor;
 }
-.btn-link:hover::after, a:hover .btn-link::after {
+.btn-link:hover::after {
   transform: translateX(4px);
   color: #ffa34d;
 }
-.btn-link:focus, a:focus .btn-link {
+.btn-link:focus {
   outline: 0;
 }
-.btn-link:focus::before, a:focus .btn-link::before {
+.btn-link:focus::before {
   opacity: 1;
   visibility: visible;
-}
-.bg-dark .btn-link, .bg-secondary .btn-link, .btn-link.-dark {
-  color: #fff;
-}
-.bg-dark .btn-link:hover, a:hover .bg-dark .btn-link, .bg-secondary .btn-link:hover, a:hover .bg-secondary .btn-link, .btn-link.-dark:hover, a:hover .btn-link.-dark {
-  color: #ffa34d;
-}
-.bg-dark .btn-link:focus::before, .bg-secondary .btn-link:focus::before, .btn-link.-dark:focus::before {
-  border-color: #fff;
-}
-.bg-secondary .btn-link:hover, a:hover .bg-secondary .btn-link {
-  color: #1eb2a6;
-}
-.bg-secondary .btn-link:hover::after, a:hover .bg-secondary .btn-link::after {
-  color: inherit;
 }
 
 input[type=button],
@@ -2262,58 +2137,6 @@ select:focus {
   border-color: #ffa34d;
   outline: none;
 }
-input[type=url]::-webkit-input-placeholder,
-input[type=text]::-webkit-input-placeholder,
-input[type=password]::-webkit-input-placeholder,
-input[type=email]::-webkit-input-placeholder,
-input[type=tel]::-webkit-input-placeholder,
-input[type=search]::-webkit-input-placeholder,
-input[type=number]::-webkit-input-placeholder,
-input[type=date]::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder,
-select::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-}
-input[type=url]:-moz-placeholder,
-input[type=text]:-moz-placeholder,
-input[type=password]:-moz-placeholder,
-input[type=email]:-moz-placeholder,
-input[type=tel]:-moz-placeholder,
-input[type=search]:-moz-placeholder,
-input[type=number]:-moz-placeholder,
-input[type=date]:-moz-placeholder,
-textarea:-moz-placeholder,
-select:-moz-placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-}
-input[type=url]::-moz-placeholder,
-input[type=text]::-moz-placeholder,
-input[type=password]::-moz-placeholder,
-input[type=email]::-moz-placeholder,
-input[type=tel]::-moz-placeholder,
-input[type=search]::-moz-placeholder,
-input[type=number]::-moz-placeholder,
-input[type=date]::-moz-placeholder,
-textarea::-moz-placeholder,
-select::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-}
-input[type=url]:-ms-input-placeholder,
-input[type=text]:-ms-input-placeholder,
-input[type=password]:-ms-input-placeholder,
-input[type=email]:-ms-input-placeholder,
-input[type=tel]:-ms-input-placeholder,
-input[type=search]:-ms-input-placeholder,
-input[type=number]:-ms-input-placeholder,
-input[type=date]:-ms-input-placeholder,
-textarea:-ms-input-placeholder,
-select:-ms-input-placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-}
 input[type=url]::placeholder,
 input[type=text]::placeholder,
 input[type=password]::placeholder,
@@ -2326,13 +2149,6 @@ textarea::placeholder,
 select::placeholder {
   color: rgba(0, 0, 0, 0.5);
   opacity: 1;
-}
-
-select {
-  cursor: pointer;
-}
-select:focus {
-  outline: none;
 }
 
 /* for IE */
@@ -2952,4 +2768,4 @@ select:-webkit-autofill:focus {
   text-transform: uppercase;
 }
 
-/*# sourceMappingURL=main.254feee1cfbc8f4d6689.css.map*/
+/*# sourceMappingURL=main.d1583744fc4ccff3cf40.css.map*/

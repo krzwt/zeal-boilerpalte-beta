@@ -342,3 +342,14 @@ $sides-x: left, right;
 		}
 	}
 }
+
+/* WordPress default alignment */
+.alignwide {
+	--container-width: #{$container-width};
+
+	@extend %container;
+}
+
+.alignfull {
+	@extend %container;
+}

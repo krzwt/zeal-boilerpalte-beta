@@ -3,14 +3,18 @@
 $base: 16px !default;
 $decimal-value: true !default;
 
+// generate rounded value
 @function round-to($value, $digits: 3) {
-  $multiplier: math.pow(10, $digits);
-  @return math.div(math.round($value * $multiplier), $multiplier);
+    $multiplier: math.pow(10, $digits);
+
+    @return math.div(math.round($value * $multiplier), $multiplier);
 }
 
+// convert px to rem
 @function rem($target, $context: $base) {
-  $result: math.div($target, $context);
-  @return if($decimal-value, round-to($result, 3), $result) * 1rem;
+    $result: math.div($target, $context);
+    
+    @return if($decimal-value, round-to($result, 3), $result) * 1rem;
 }
 
 // aspect-ratio
