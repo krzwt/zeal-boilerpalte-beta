@@ -44,6 +44,11 @@ function mytheme_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	/**
+	 * Enable support for wide alignment.
+	 */
+	add_theme_support( 'align-wide' );
+
+	/**
 	* Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	*/
 	add_theme_support(
@@ -76,16 +81,29 @@ add_action( 'after_setup_theme', 'mytheme_setup' );
  */
 function mytheme_scripts() {
 	wp_enqueue_style( THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION );
-    wp_enqueue_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), _THEME_VERSION );
+    // wp_enqueue_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), _THEME_VERSION );
 
 	wp_enqueue_script( 'jquery' );
 
-	if (file_exists( get_template_directory() . '/assets/js/scripts.js' ) && is_user_logged_in()) {
-        wp_register_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), _THEME_VERSION, true );
-    } else {
-        wp_register_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array( 'jquery' ), _THEME_VERSION, true );
+	// if (file_exists( get_template_directory() . '/assets/js/scripts.js' ) && is_user_logged_in()) {
+    //     wp_register_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ), _THEME_VERSION, true );
+    // } else {
+    //     wp_register_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array( 'jquery' ), _THEME_VERSION, true );
+    // }
+    // wp_enqueue_script( THEME_PREFIX . '-scripts' );
+
+	$manifest_path = get_template_directory() . '/public/manifest.json';
+	if ( file_exists( $manifest_path ) ) {
+        $manifest = json_decode( file_get_contents( $manifest_path ), true );
+
+        if ( isset( $manifest['main.css'] ) ) {
+            wp_enqueue_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/public' . $manifest['main.css'], array(), _THEME_VERSION );
+        }
+
+        if ( isset( $manifest['main.js'] ) ) {
+            wp_enqueue_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/public' . $manifest['main.js'], array( 'jquery' ), _THEME_VERSION, true );
+        }
     }
-    wp_enqueue_script( THEME_PREFIX . '-scripts' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

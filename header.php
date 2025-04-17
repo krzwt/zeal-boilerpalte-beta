@@ -19,7 +19,6 @@ if ( !defined( 'ABSPATH' ) ) {
     <!-- <meta name="theme-color" content="#7b0a2e"/> -->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ) ?>" />
-	<?php echo get_field( 'add_code_in_head', 'options' ); ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class() ?>>
