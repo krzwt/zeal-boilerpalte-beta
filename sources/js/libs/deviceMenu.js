@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const DeviceMenu = () => {
     /* Responsive jQuery Navigation */
     const $hamBurger = $('.hamburger');
