@@ -102,12 +102,6 @@ function printr($data, $exit = false, $log = false)
 	if ($exit) {
 		exit;
 	}
-	/**
-	 * Example Usage
-	 * printr( $my_array ); // Print for debugging.
-	 * printr( $my_array, true ); // Print and stop execution.
-	 * printr( $my_array, false, true ); // Log to error_log.
-	 */
 }
 
 /**
@@ -125,8 +119,4 @@ function trim_excerpt($text, $limit = 55)
 		$text  = substr($text, 0, $pos[$limit]) . '...';
 	}
 	return esc_html($text);
-	/**
-	 * Example Usage
-	 * echo trim_excerpt( $excerpt, 40 );
-	 */
 }
