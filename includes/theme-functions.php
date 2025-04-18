@@ -102,12 +102,6 @@ function printr($data, $exit = false, $log = false)
 	if ($exit) {
 		exit;
 	}
-	/**
-	 * Example Usage
-	 * printr( $my_array ); // Print for debugging.
-	 * printr( $my_array, true ); // Print and stop execution.
-	 * printr( $my_array, false, true ); // Log to error_log.
-	 */
 }
 
 /**
