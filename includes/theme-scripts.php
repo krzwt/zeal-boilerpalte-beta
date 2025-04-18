@@ -19,6 +19,15 @@ add_action( 'wp_enqueue_scripts', 'force_load_jquery', 1 ); // Execute early to 
  */
 add_action( 'wp_enqueue_scripts', 'zwt_enqueue' );
 function zwt_enqueue() {
+    // Enqueue the custom AJAX handling script
+    wp_enqueue_script(
+        'zwt-ajax-script', // Script handle
+        get_template_directory_uri() . '/assets/js/zwt-ajax-script.js', // Script path
+        array( 'jquery' ), // Dependencies (requires jQuery)
+        '1.0.0', // Version
+        true // Load script in the footer
+    );
+
     // Localize the script to pass AJAX URL and nonce to JavaScript
     wp_localize_script(
         'zwt-ajax-script',
