@@ -1,3 +1,4 @@
+var $ = jQuery.noConflict();
 const DeviceMenu = () => {
     /* Responsive jQuery Navigation */
     const $hamBurger = $('.hamburger');
@@ -57,8 +58,17 @@ const DeviceMenu = () => {
         $('body').addClass('scroll-fixed');
     
         const $menuLeftMove = $('.mbnav__inner > .menu-wrap');
-        const backMove = $menuLeftMove.css('--leftSlide');
-        $menuLeftMove.css('--leftSlide', `${parseInt(backMove, 10) + 100}%`);
+        // const backMove = $menuLeftMove.css('--leftSlide');
+        // $menuLeftMove.css('--leftSlide', `${parseInt(backMove, 10) + 100}%`);
+        // Get the computed value of the CSS variable
+        const backMove = getComputedStyle($menuLeftMove[0]).getPropertyValue('--leftSlide').trim();
+
+        // Convert to number
+        const moveValue = parseInt(backMove, 10);
+        const safeMove = isNaN(moveValue) ? 0 : moveValue;
+
+        // Set new value
+        $menuLeftMove.css('--leftSlide', `${safeMove + 100}%`);
     });
   
     // Handle back click
