@@ -35,7 +35,7 @@ export default {
   },
 
   output: {
-    path: path.resolve(dirname, "public"),
+    path: path.resolve(dirname, "assets"),
     filename: "js/[name].[contenthash].js",
     clean: true,
     publicPath: "/",
