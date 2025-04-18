@@ -1,3 +1,4 @@
+var $ = jQuery.noConflict();
 const DeviceMenu = () => {
     /* Responsive Navigation */
     const hamBurger = document.querySelector('.hamburger');
@@ -9,9 +10,11 @@ const DeviceMenu = () => {
         hamBurger.classList.remove('is-clicked');
         document.body.classList.remove('scroll-fixed');
         mbnav.classList.remove('is-open');
-        const menuItems = menuWrap.querySelectorAll('li');
-        menuItems.forEach(item => item.classList.remove('is-open'));
-        document.querySelector('.mbnav__inner > .menu-wrap').style.setProperty('--leftSlide', '0');
+        if (menuWrap) {
+            const menuItems = menuWrap.querySelectorAll('li');
+            menuItems.forEach(item => item.classList.remove('is-open'));
+            document.querySelector('.mbnav__inner > .menu-wrap').style.setProperty('--leftSlide', '0');
+        }
     };
   
     /* Mobile overlay click */
@@ -45,46 +48,71 @@ const DeviceMenu = () => {
     });
   
     const subMenuItems = document.querySelectorAll('.mbnav ul > li:has(ul.sub-menu)');
+
     subMenuItems.forEach(item => {
-        const subMenu = item.querySelector('> ul');
-        const backClick = document.createElement('li');
-        backClick.classList.add('back-click');
-        backClick.textContent = 'Main Menu';
-        subMenu.prepend(backClick);
+        const subMenu = item.querySelector(':scope > ul');
+        const parentLink = item.querySelector(':scope > a');
+
+        if (subMenu && parentLink) {
+            const backClick = document.createElement('li');
+            backClick.classList.add('back-click');
+            backClick.textContent = parentLink.textContent.trim();
+            subMenu.prepend(backClick);
+        }
     });
   
     if (clickable === 'true') {
         const caretElements = document.querySelectorAll('.mbnav .has-sub > .mbnav__caret');
-        caretElements.forEach(caret => caret.classList.add('trigger-caret'));
+        caretElements.forEach(caret => caret.classList.add('mbnav__caret'));
     } else {
         const nonClickableLinks = document.querySelectorAll('.mbnav .has-sub > a');
         nonClickableLinks.forEach(link => {
-            link.classList.add('trigger-caret');
+            link.classList.add('mbnav__caret');
             link.setAttribute('href', 'javascript:;');
         });
     }
   
-    // Wrap content
+   // === First part: wrapAll ===
     const menuInner = document.querySelector('.mbnav__inner');
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('menu-wrap');
-    const innerWrapper = document.createElement('div');
-    innerWrapper.classList.add('menu-inner');
-    wrapper.appendChild(innerWrapper);
-    menuInner.appendChild(wrapper);
+    const children = Array.from(menuInner.children);
+
+    // Create outer wrappers
+    const outerWrap = document.createElement('div');
+    outerWrap.classList.add('menu-wrap');
+
+    const innerWrap = document.createElement('div');
+    innerWrap.classList.add('menu-inner');
+
+    // Move all children into innerWrap
+    children.forEach(child => innerWrap.appendChild(child));
+
+    // Append innerWrap to outerWrap, and that to menuInner
+    outerWrap.appendChild(innerWrap);
+    menuInner.appendChild(outerWrap);
   
-    const subMenuWrapper = document.querySelectorAll('.mbnav__inner ul li.has-sub ul');
-    subMenuWrapper.forEach(subMenu => {
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('menu-wrap');
-        const innerWrapper = document.createElement('div');
-        innerWrapper.classList.add('menu-inner');
-        wrapper.appendChild(innerWrapper);
-        subMenu.parentNode.appendChild(wrapper);
+    const submenuElements  = document.querySelectorAll('.mbnav__inner ul li.has-sub ul');
+
+    submenuElements.forEach(subMenu => {
+        // Create the wrapper structure
+        const menuWrap = document.createElement('div');
+        menuWrap.classList.add('menu-wrap');
+
+        const innerWrap = document.createElement('div');
+        innerWrap.classList.add('menu-inner');
+
+        // Insert the wrapper before the submenu
+        subMenu.parentNode.replaceChild(menuWrap, subMenu);
+
+        // Put the submenu inside innerWrap
+        innerWrap.appendChild(subMenu);
+
+        // Put innerWrap inside menuWrap
+        menuWrap.appendChild(innerWrap);
     });
+
   
     // Open menu on caret click
-    const caretTriggers = document.querySelectorAll('.mbnav .has-sub > .trigger-caret');
+    const caretTriggers = document.querySelectorAll('.mbnav .has-sub > .mbnav__caret');
     caretTriggers.forEach(trigger => {
         trigger.addEventListener('click', function() {
             const element = this.parentElement;
@@ -109,7 +137,11 @@ const DeviceMenu = () => {
   
     // Set padding from header height
     const headerHeight = document.querySelector('header.main-header').offsetHeight;
-    document.querySelector('.mbnav .menu-wrap > .menu-inner').style.paddingTop = `${headerHeight}px`;
+    const menuInners = document.querySelectorAll('.mbnav .menu-wrap .menu-inner');
+
+    menuInners.forEach(inner => {
+        inner.style.paddingTop = `${headerHeight}px`;
+    });
 };
   
 export default DeviceMenu;
