@@ -1,4 +1,3 @@
-var $ = jQuery.noConflict();
 const DeviceMenu = () => {
     /* Responsive Navigation */
     const hamBurger = document.querySelector('.hamburger');
@@ -85,25 +84,6 @@ const DeviceMenu = () => {
     });
   
     // Open menu on caret click
-<<<<<<< HEAD
-    $('.mbnav .has-sub > .trigger-caret').on('click', function() {
-        const $element = $(this).parent('li');
-        $element.addClass('is-open');
-        $('body').addClass('scroll-fixed');
-    
-        const $menuLeftMove = $('.mbnav__inner > .menu-wrap');
-        // const backMove = $menuLeftMove.css('--leftSlide');
-        // $menuLeftMove.css('--leftSlide', `${parseInt(backMove, 10) + 100}%`);
-        // Get the computed value of the CSS variable
-        const backMove = getComputedStyle($menuLeftMove[0]).getPropertyValue('--leftSlide').trim();
-
-        // Convert to number
-        const moveValue = parseInt(backMove, 10);
-        const safeMove = isNaN(moveValue) ? 0 : moveValue;
-
-        // Set new value
-        $menuLeftMove.css('--leftSlide', `${safeMove + 100}%`);
-=======
     const caretTriggers = document.querySelectorAll('.mbnav .has-sub > .trigger-caret');
     caretTriggers.forEach(trigger => {
         trigger.addEventListener('click', function() {
@@ -114,7 +94,6 @@ const DeviceMenu = () => {
             const backMove = parseInt(getComputedStyle(menuLeftMove).getPropertyValue('--leftSlide'), 10);
             menuLeftMove.style.setProperty('--leftSlide', `${backMove + 100}%`);
         });
->>>>>>> main
     });
   
     // Handle back click
