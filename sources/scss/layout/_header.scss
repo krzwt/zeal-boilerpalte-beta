@@ -68,11 +68,21 @@
 								border-right: 1px solid $primary-100;
 								border-top: 1px solid $primary-100;
 								content: "";
+								transition: border-color 0.3s;
 							}
 						}
 					}
 
 					&:hover {
+						> a {
+							background-color: $primary-100;
+							color: $white;
+
+							&::after {
+								border-color: $white;
+							}
+						}
+						
 						>ul {
 							opacity: 1;
 							pointer-events: auto;
@@ -87,6 +97,7 @@
 					min-width: 200px;
 					opacity: 0;
 					pointer-events: none;
+					transition: opacity 0.3s;
 
 					.sub-menu {
 						left: 100%;
@@ -105,8 +116,18 @@
 								&::after {
 									top: 17px;
 									transform: rotate(45deg);
-									border-right: 1px solid $white;
-									border-top: 1px solid $white;
+									border-color: $white;
+								}
+							}
+						}
+
+						&:hover {
+							> a {
+								background-color: $white;
+								color: $primary-100;
+
+								&::after {
+									border-color: $primary-100;
 								}
 							}
 						}
