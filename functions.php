@@ -92,16 +92,16 @@ function mytheme_scripts() {
     // }
     // wp_enqueue_script( THEME_PREFIX . '-scripts' );
 
-	$manifest_path = get_template_directory() . '/public/manifest.json';
+	$manifest_path = get_template_directory() . '/assets/manifest.json';
 	if ( file_exists( $manifest_path ) ) {
         $manifest = json_decode( file_get_contents( $manifest_path ), true );
 
         if ( isset( $manifest['main.css'] ) ) {
-            wp_enqueue_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/public' . $manifest['main.css'], array(), _THEME_VERSION );
+            wp_enqueue_style( THEME_PREFIX . '-style', get_template_directory_uri() . '/assets' . $manifest['main.css'], array(), _THEME_VERSION );
         }
 
         if ( isset( $manifest['main.js'] ) ) {
-            wp_enqueue_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/public' . $manifest['main.js'], array( 'jquery' ), _THEME_VERSION, true );
+            wp_enqueue_script( THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets' . $manifest['main.js'], array( 'jquery' ), _THEME_VERSION, true );
         }
     }
 

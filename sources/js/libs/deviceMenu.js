@@ -1,57 +1,91 @@
 var $ = jQuery.noConflict();
 const DeviceMenu = () => {
-    /* Responsive jQuery Navigation */
-    const $hamBurger = $('.hamburger');
-    const $overlay = $('.mbnav__backdrop');
+    /* Responsive Navigation */
+    const hamBurger = document.querySelector('.hamburger');
+    const overlay = document.querySelector('.mbnav__backdrop');
+    const mbnav = document.querySelector('.mbnav');
+    const menuWrap = document.querySelector('.mbnav .menu-wrap');
   
     const menuClose = () => {
-        $hamBurger.removeClass('is-clicked');
-        $('body').removeClass('scroll-fixed');
-        $('.mbnav').removeClass('is-open');
-        $('.mbnav .menu-wrap li').removeClass('is-open');
-        $('.mbnav__inner > .menu-wrap').css('--leftSlide', '0');
+        hamBurger.classList.remove('is-clicked');
+        document.body.classList.remove('scroll-fixed');
+        mbnav.classList.remove('is-open');
+        const menuItems = menuWrap.querySelectorAll('li');
+        menuItems.forEach(item => item.classList.remove('is-open'));
+        document.querySelector('.mbnav__inner > .menu-wrap').style.setProperty('--leftSlide', '0');
     };
   
     /* Mobile overlay click */
-    $overlay.on('click', () => {
+    overlay.addEventListener('click', () => {
         menuClose();
     });
   
-    $hamBurger.on('click', function() {
-        if ($(this).hasClass('is-clicked')) {
+    hamBurger.addEventListener('click', function() {
+        if (hamBurger.classList.contains('is-clicked')) {
             menuClose();
         } else {
-            $(this).addClass('is-clicked');
-            $('.mbnav').addClass('is-open');
-            $('body').addClass('scroll-fixed');
+            hamBurger.classList.add('is-clicked');
+            mbnav.classList.add('is-open');
+            document.body.classList.add('scroll-fixed');
         }
     });
   
-    const clickable = $('.mbnav__state').attr('data-clickable');
-    $('.mbnav li:has(ul)').addClass('has-sub');
-    $('.mbnav li > ul').addClass('sub-menu');
-    $('.mbnav .has-sub > a').after('<em class="mbnav__caret"></em>');
+    const clickable = document.querySelector('.mbnav__state').getAttribute('data-clickable');
   
-    $('.mbnav ul > li:has(ul.sub-menu)').each(function() {
-        $(this).find('> ul').prepend('<li class="back-click">Main Menu</li>');
+    const listItemsWithSubMenu = document.querySelectorAll('.mbnav li:has(ul)');
+    listItemsWithSubMenu.forEach(item => item.classList.add('has-sub'));
+  
+    const subMenus = document.querySelectorAll('.mbnav li > ul');
+    subMenus.forEach(subMenu => subMenu.classList.add('sub-menu'));
+  
+    const hasSubLinks = document.querySelectorAll('.mbnav .has-sub > a');
+    hasSubLinks.forEach(link => {
+        const caret = document.createElement('em');
+        caret.classList.add('mbnav__caret');
+        link.after(caret);
+    });
+  
+    const subMenuItems = document.querySelectorAll('.mbnav ul > li:has(ul.sub-menu)');
+    subMenuItems.forEach(item => {
+        const subMenu = item.querySelector('> ul');
+        const backClick = document.createElement('li');
+        backClick.classList.add('back-click');
+        backClick.textContent = 'Main Menu';
+        subMenu.prepend(backClick);
     });
   
     if (clickable === 'true') {
-        $('.mbnav .has-sub > .mbnav__caret').addClass('trigger-caret');
+        const caretElements = document.querySelectorAll('.mbnav .has-sub > .mbnav__caret');
+        caretElements.forEach(caret => caret.classList.add('trigger-caret'));
     } else {
-        $('.mbnav .has-sub > a').addClass('trigger-caret').attr('href', 'javascript:;');
+        const nonClickableLinks = document.querySelectorAll('.mbnav .has-sub > a');
+        nonClickableLinks.forEach(link => {
+            link.classList.add('trigger-caret');
+            link.setAttribute('href', 'javascript:;');
+        });
     }
   
     // Wrap content
-    $('.mbnav__inner > *').wrapAll(
-        '<div class=\'menu-wrap\'><div class=\'menu-inner\'></div></div>',
-    );
+    const menuInner = document.querySelector('.mbnav__inner');
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('menu-wrap');
+    const innerWrapper = document.createElement('div');
+    innerWrapper.classList.add('menu-inner');
+    wrapper.appendChild(innerWrapper);
+    menuInner.appendChild(wrapper);
   
-    $('.mbnav__inner ul li.has-sub ul').wrap(
-        '<div class=\'menu-wrap\'><div class=\'menu-inner\'></div></div>',
-    );
+    const subMenuWrapper = document.querySelectorAll('.mbnav__inner ul li.has-sub ul');
+    subMenuWrapper.forEach(subMenu => {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('menu-wrap');
+        const innerWrapper = document.createElement('div');
+        innerWrapper.classList.add('menu-inner');
+        wrapper.appendChild(innerWrapper);
+        subMenu.parentNode.appendChild(wrapper);
+    });
   
     // Open menu on caret click
+<<<<<<< HEAD
     $('.mbnav .has-sub > .trigger-caret').on('click', function() {
         const $element = $(this).parent('li');
         $element.addClass('is-open');
@@ -69,20 +103,34 @@ const DeviceMenu = () => {
 
         // Set new value
         $menuLeftMove.css('--leftSlide', `${safeMove + 100}%`);
+=======
+    const caretTriggers = document.querySelectorAll('.mbnav .has-sub > .trigger-caret');
+    caretTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            const element = this.parentElement;
+            element.classList.add('is-open');
+            document.body.classList.add('scroll-fixed');
+            const menuLeftMove = document.querySelector('.mbnav__inner > .menu-wrap');
+            const backMove = parseInt(getComputedStyle(menuLeftMove).getPropertyValue('--leftSlide'), 10);
+            menuLeftMove.style.setProperty('--leftSlide', `${backMove + 100}%`);
+        });
+>>>>>>> main
     });
   
     // Handle back click
-    $('.mbnav__inner .back-click').on('click', function() {
-        $(this).closest('li').removeClass('is-open');    
-        const $menuLeftMove = $('.mbnav__inner > .menu-wrap');
-        const backMove = $menuLeftMove.css('--leftSlide');
-        $menuLeftMove.css('--leftSlide', `${parseInt(backMove, 10) - 100}%`);
+    const backClicks = document.querySelectorAll('.mbnav__inner .back-click');
+    backClicks.forEach(backClick => {
+        backClick.addEventListener('click', function() {
+            this.closest('li').classList.remove('is-open');
+            const menuLeftMove = document.querySelector('.mbnav__inner > .menu-wrap');
+            const backMove = parseInt(getComputedStyle(menuLeftMove).getPropertyValue('--leftSlide'), 10);
+            menuLeftMove.style.setProperty('--leftSlide', `${backMove - 100}%`);
+        });
     });
   
     // Set padding from header height
-    const headerHeight = $('header.main-header').outerHeight();
-    $('.mbnav .menu-wrap > .menu-inner').css('padding-top', headerHeight);
+    const headerHeight = document.querySelector('header.main-header').offsetHeight;
+    document.querySelector('.mbnav .menu-wrap > .menu-inner').style.paddingTop = `${headerHeight}px`;
 };
   
 export default DeviceMenu;
-  
