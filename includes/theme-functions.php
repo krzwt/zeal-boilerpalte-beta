@@ -125,8 +125,4 @@ function trim_excerpt($text, $limit = 55)
 		$text  = substr($text, 0, $pos[$limit]) . '...';
 	}
 	return esc_html($text);
-	/**
-	 * Example Usage
-	 * echo trim_excerpt( $excerpt, 40 );
-	 */
 }
