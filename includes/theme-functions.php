@@ -102,12 +102,6 @@ function printr($data, $exit = false, $log = false)
 	if ($exit) {
 		exit;
 	}
-	/**
-	 * Example Usage
-	 * printr( $my_array ); // Print for debugging.
-	 * printr( $my_array, true ); // Print and stop execution.
-	 * printr( $my_array, false, true ); // Log to error_log.
-	 */
 }
 
 /**
@@ -125,8 +119,76 @@ function trim_excerpt($text, $limit = 55)
 		$text  = substr($text, 0, $pos[$limit]) . '...';
 	}
 	return esc_html($text);
-	/**
-	 * Example Usage
-	 * echo trim_excerpt( $excerpt, 40 );
-	 */
+}
+
+function zwt_archive_post() {
+    ob_start();
+
+    // Display search heading and search form
+    echo "<div>" . esc_html__( 'Search', 'your-textdomain' ) . "</div>";
+    get_search_form();
+
+    // Fetch categories excluding 'Uncategorized'
+    $categories = get_categories(
+        array(
+            'exclude' => 1 // Replace 1 with the actual ID of "Uncategorized" if different
+        )
+    );
+
+    // Display category dropdown if categories exist
+    if ( !empty( $categories ) ) {
+        echo "<div>" . esc_html__( 'Filter by Category', 'your-textdomain' ) . "</div>";
+        echo "
+        <select name='postcategory' id='postcategory'>
+            <option value=''>" . esc_html__( 'Select Category', 'your-textdomain' ) . "</option>";
+            foreach ( $categories as $category ) {
+                echo '<option value="' . esc_attr( $category->slug ) . '">' . esc_html( $category->name ) . '</option>';
+            }
+        echo "</select>";
+    }
+
+    // Loading indicator for AJAX requests
+    echo "
+    <div class='loading' style='display:none;'>" . esc_html__( 'Loading', 'your-textdomain' ) . "</div>
+    <div class='blog-listing'>";
+
+    // Check if there are posts available
+    if ( have_posts() ) :
+        while ( have_posts() ) : the_post();
+            echo '
+            <article>
+                <h2><a href="' . esc_url( get_the_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h2>
+                <p>' . esc_html( get_the_excerpt() ) . '</p>
+            </article>';
+        endwhile;
+
+        // Pagination Section
+        echo "<div class='zwt-pagination'>";
+
+        global $wp_query;
+        $big = 999999999; // Need an unlikely integer to replace with the actual page number
+        echo paginate_links( array (
+            'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ), // Base URL format
+            'format'    => '?paged=%#%', // Pagination format
+            'current'   => max( 1, get_query_var( 'paged' ) ), // Current page number
+            'total'     => $wp_query->max_num_pages, // Total number of pages
+            'mid_size'  => 2, // Number of pagination links to show around the current page
+            'end_size'  => 1, // Number of pagination links to show at the beginning and end
+            'prev_next' => false, // Removes "Prev" and "Next" links
+        ) );
+
+        echo "</div>"; // End of pagination
+
+    else :
+        // Display message if no posts are found
+        echo "<p>" . esc_html__( 'No posts found.', 'your-textdomain' ) . "</p>";
+    endif;
+
+    echo "</div>"; // End of blog listing container
+
+    // Reset post data after custom query
+    wp_reset_postdata();
+
+    // Return the buffered content
+    return ob_get_clean();
 }
