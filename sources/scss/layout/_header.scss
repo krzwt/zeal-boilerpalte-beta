@@ -33,6 +33,8 @@
 		}
 		/* stylelint-disable max-nesting-depth */
 		nav {
+			margin-right: 30px;
+			
 			> ul {
 				display: flex;
 			}
@@ -82,7 +84,7 @@
 								border-color: $white;
 							}
 						}
-						
+
 						>ul {
 							opacity: 1;
 							pointer-events: auto;
