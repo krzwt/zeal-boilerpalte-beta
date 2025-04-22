@@ -8,7 +8,6 @@
   "description": "A starter theme for WordPress with modern JavaScript and CSS tooling.",
   "type": "module",
   "scripts": {
-    "preinstall": "composer install",
     "dev": "webpack --mode development",
     "watch": "webpack --watch",
     "build": "webpack --mode production",
@@ -18,7 +17,7 @@
     "lint:scss:fix": "stylelint -c config.stylelint.js sources/**/*.scss --fix",
     "lint": "npm run lint:js && npm run lint:scss && npm run lint:phpcs",
     "lint:fix": "npm run lint:js:fix && npm run lint:scss:fix",
-    "lint:phpcs": "bash -c 'phpcs --standard=PSR12 *.php'"
+    "lint:phpcs": "bash -c 'phpcs --standard=PSR12 /**/*.php'"
   },
   "keywords": [
     "WordPress",
@@ -53,7 +52,9 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
+    "glob": "^11.0.1",
     "jquery": "^3.7.1",
+    "purgecss-webpack-plugin": "^7.0.2",
     "swiper": "^11.2.6",
     "webpack-manifest-plugin": "^5.0.1"
   },

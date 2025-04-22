@@ -91,7 +91,7 @@ const DeviceMenu = () => {
             element.classList.add('is-open');
             document.body.classList.add('scroll-fixed');
             const menuLeftMove = document.querySelector('.mbnav__inner > .menu-wrap');
-            const backMove = parseInt(getComputedStyle(menuLeftMove).getPropertyValue('--leftSlide'), 10);
+            const backMove = parseInt(menuLeftMove.getPropertyValue('--leftSlide'), 10);
             menuLeftMove.style.setProperty('--leftSlide', `${backMove + 100}%`);
         });
     });
@@ -102,7 +102,7 @@ const DeviceMenu = () => {
         backClick.addEventListener('click', function() {
             this.closest('li').classList.remove('is-open');
             const menuLeftMove = document.querySelector('.mbnav__inner > .menu-wrap');
-            const backMove = parseInt(getComputedStyle(menuLeftMove).getPropertyValue('--leftSlide'), 10);
+            const backMove = parseInt(menuLeftMove.getPropertyValue('--leftSlide'), 10);
             menuLeftMove.style.setProperty('--leftSlide', `${backMove - 100}%`);
         });
     });
