@@ -14,20 +14,20 @@ $hamburger: ".hamburger";
 
 #{$hamburger} {
     --humburgerbox: #{rem(40px)};
-
-    display: none;
+    
+    display: flex;
     align-items: center;
     justify-content: center;
     width: var(--humburgerbox);
     height: var(--humburgerbox);
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 rem(25px);
     text-align: center;
     background-color: transparent;
     z-index: 999;
-
-    @include mobile {
-        display: flex;
+    
+    @include respond-above('lg') {
+        display: none;
     }
 
     &:hover,
@@ -96,11 +96,11 @@ $hamburger: ".hamburger";
 
 #{$mbnav} {
     position: relative;
-    display: none;
-    z-index: 999;
-
-    @include respond-below(lg) {
-        display: block;
+    display: block;
+    z-index: -1;
+    
+    @include respond-above('lg') {
+        display: none;
     }
 
     &__state {
@@ -135,15 +135,16 @@ $hamburger: ".hamburger";
     }
 
     .menu-wrap {
-        --left-slide: 0;
+        /* stylelint-disable custom-property-pattern */
+        --leftSlide: 0;
 
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
-        right: var(--left-slide);
+        right: var(--leftSlide);
         transition: 0.4s ease;
-
+        /* stylelint-enable custom-property-pattern */
         .menu-wrap {
             right: -100%;
             opacity: 0;
@@ -153,7 +154,6 @@ $hamburger: ".hamburger";
         > .menu-inner {
             max-height: 100%;
             padding-top: rem(85px);
-            padding-bottom: rem(20px);
             background-color: $white;
             pointer-events: auto;
             overflow: hidden auto;
@@ -167,6 +167,7 @@ $hamburger: ".hamburger";
         margin: 0;
         padding: 0 20px;
         transition: 0.4s ease;
+        box-shadow: 0 0 10px 0 rgba($black, 0.2);
 
         li {
             &.is-open {
@@ -257,10 +258,6 @@ $hamburger: ".hamburger";
                 cursor: pointer;
                 z-index: 1;
 
-                &:not(.trigger-caret) {
-                    pointer-events: none;
-                }
-
                 &::before {
                     @extend %after;
 
@@ -299,6 +296,33 @@ $hamburger: ".hamburger";
                     display: block;
                 }
             }
+            
+            &.back-click {
+                position: relative;
+                width: 100%;
+                padding: 10px 0 10px 20px;
+                order: -1;
+                color: currentcolor;
+                font-weight: 400;
+    
+                &::before {
+                    --sarrow-width: 10px;
+                    
+                    content: "";
+                    position: absolute;
+                    left: 2px;
+                    top: 20px;
+                    transform: rotate(-135deg);
+                    display: flex;
+                    align-items: center;
+                    margin: auto;
+                    width: var(--sarrow-width);
+                    height: var(--sarrow-width);
+                    border: calc(var(--sarrow-width) / 4) solid $primary-100;
+                    border-left: 0;
+                    border-bottom: 0;
+                }
+            }
         }
 
         ul {
@@ -323,28 +347,6 @@ $hamburger: ".hamburger";
             > .sub-menu {
                 position: absolute;
                 left: 100%;
-            }
-        }
-
-        .back-click {
-            width: 100%;
-            order: -1;
-            color: currentcolor;
-            padding: 15px 0;
-            font-weight: 400;
-
-            &::before {
-                @include icon("a");
-
-                position: static;
-                display: inline-block;
-                width: auto;
-                height: auto;
-                color: $primary-100;
-                margin-right: 15px;
-                margin-bottom: 3px;
-                font-size: 18px;
-                border: 0;
             }
         }
     }
