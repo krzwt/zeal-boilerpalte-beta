@@ -190,3 +190,46 @@ function entry_banner() {
 		echo '</div>';
     echo '</div>';
 }
+
+
+/**
+ * Allow SVG.
+ */
+function allow_svg_uploads_for_admin($mimes) {
+    // Allow SVG for administrators only
+    if (current_user_can('administrator')) {
+        $mimes['svg'] = 'image/svg+xml';
+    }
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_uploads_for_admin');
+
+// Disable file type check for SVG (bypass the "not allowed" error)
+function fix_svg_filetype_check($data, $file, $filename, $mimes) {
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if ($ext === 'svg') {
+        $data['type'] = 'image/svg+xml';
+        $data['ext']  = 'svg';
+    }
+    return $data;
+}
+add_filter('wp_check_filetype_and_ext', 'fix_svg_filetype_check', 10, 4);
+
+
+/**
+ * SVG image.
+ */
+function svg_icon( $attachment_id ) {
+    $file_path = get_attached_file( $attachment_id );
+
+    if ( ! $file_path || ! file_exists( $file_path ) ) {
+        return '';
+    }
+
+    $mime = mime_content_type( $file_path );
+    if ( strpos( $mime, 'svg' ) !== false ) {
+        return file_get_contents( $file_path );
+    }
+
+    return '';
+}
