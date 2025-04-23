@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Load the theme actions.
  */
@@ -78,23 +77,24 @@ function zwt_ajaxsearch_filter() {
         $loop_output .= "<div class='zwt-pagination'>";
 
         $big = 999999999; // Unlikely integer for pagination replacement
-        $pagination = paginate_links( array (
-            'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ), // Generate correct pagination links
+        $pagination = paginate_links( array(
+            'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
             'format'    => '?paged=%#%',
             'current'   => max( 1, get_query_var( 'paged' ) ),
             'total'     => $loop->max_num_pages,
-            'mid_size'  => 2, // Number of middle pages shown
-            'end_size'  => 1, // Number of end pages shown
-            'prev_next' => false, // Hide "Prev" and "Next" buttons
-            'type'      => 'array' // Return pagination links as an array
+            'mid_size'  => 2,
+            'end_size'  => 1,
+            'prev_next' => false,
+            'type'      => 'array'
         ) );
 
-        $loop_output .= implode( '', $pagination );
+        if ( ! empty( $pagination ) && is_array( $pagination ) ) {
+            $loop_output .= implode( '', $pagination );
+        }
 
         $loop_output .= "</div>";
 
     } else {
-        // No posts found message
         $loop_output .= '<p>' . esc_html__( 'No posts found.', 'your-textdomain' ) . '</p>';
     }
 
