@@ -128,7 +128,10 @@ const DeviceMenu = () => {
     const backClicks = document.querySelectorAll('.mbnav__inner .back-click');
     backClicks.forEach(backClick => {
         backClick.addEventListener('click', function() {
-            this.closest('li').classList.remove('is-open');
+            const menuItem = this.closest('.menu-item');
+            if (menuItem) {
+                menuItem.classList.remove('is-open');
+            }
             const menuLeftMove = document.querySelector('.mbnav__inner > .menu-wrap');
             const backMove = parseInt(getComputedStyle(menuLeftMove).getPropertyValue('--leftSlide'), 10);
             menuLeftMove.style.setProperty('--leftSlide', `${backMove - 100}%`);
