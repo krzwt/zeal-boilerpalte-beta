@@ -28,12 +28,12 @@ const plugins = [
         publicPath: '/',     // Ensure proper public path
         basePath: '',        // No double prefix
     }),
-    new PurgeCSSPlugin({
-        paths: globSync(`${dirname}/**/*.php`),
-        safelist: [], // Remove all safelisting temporarily
-        defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
-        verbose: true,
-    }),
+    // new PurgeCSSPlugin({
+    //     paths: globSync(`${dirname}/**/*.php`),
+    //     safelist: [], // Remove all safelisting temporarily
+    //     defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
+    //     verbose: true,
+    // }),
 ];
 
 // Export Webpack config object
