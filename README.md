@@ -25,31 +25,28 @@ To get started with this theme, follow these steps:
 
 ### Step 1: Clone the Repository
 
-```bash
 git clone https://github.com/your-username/wp-starter-theme.git
 cd wp-starter-theme
-
 
 
 ### All Commands Included:
 
 1. **Installation:**
-   - `npm install`: Install Node.js dependencies.
-   - `composer install`: Install PHP dependencies for WordPress.
+   - `npm install` : Install Node.js dependencies.
+   - `composer install` : Install PHP dependencies for WordPress.
 
 2. **Development Commands:**
-   - `npm run dev`: Start Webpack in development mode.
-   - `npm run watch`: Watch for file changes during development.
+   - `npm run dev` : Start Webpack in development mode.
+   - `npm run watch` : Watch for file changes during development.
 
 3. **Linting Commands:**
-   - `npm run lint:js`: Lint JavaScript files.
-   - `npm run lint:js:fix`: Automatically fix JavaScript linting issues.
-   - `npm run lint:scss`: Lint SCSS files.
-   - `npm run lint:scss:fix`: Automatically fix SCSS linting issues.
-   - `npm run lint:phpcs`: Lint PHP files using PSR12 standard.
-   - `npm run lint`: Run all linting checks.
-   - `npm run lint:fix`: Automatically fix all linting issues.
+   - `npm run lint:js` : Lint JavaScript files.
+   - `npm run lint:js:fix` : Automatically fix JavaScript linting issues.
+   - `npm run lint:scss` : Lint SCSS files.
+   - `npm run lint:scss:fix` : Automatically fix SCSS linting issues.
+   - `npm run lint:phpcs` : Lint PHP files using PSR12 standard.
+   - `npm run lint` : Run all linting checks.
+   - `npm run lint:fix` : Automatically fix all linting issues.
 
 4. **Building Commands:**
-   - `npm run build`: Build the theme for production (optimized and minified).
-   - `npm run build --watch`: Build for production with watch mode.
+   - `npm run build`  : Build the theme for production (optimized and minified).
