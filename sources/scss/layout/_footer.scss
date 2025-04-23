@@ -1,4 +1,6 @@
 @use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
+@use "@scss/abstracts/mixins" as *;
 
 /* --- footer --- */
 .main-footer {
@@ -7,4 +9,5 @@
 	align-self: end;
 	line-height: normal;
 	background: $primary-100;
+	padding: 100px 0;
 }

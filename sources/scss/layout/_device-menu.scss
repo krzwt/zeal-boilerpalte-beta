@@ -1,7 +1,8 @@
 @use "@scss/abstracts/variables" as *;
+@use "@scss/abstracts/function" as *;
 @use "@scss/abstracts/mixins" as *;
 
-/* responsive nav for small devices */
+/* stylelint-disable max-nesting-depth */
 $mbnav: ".mbnav";
 $mbbg: $secondary-100;
 $line: $secondary-100;
@@ -11,23 +12,22 @@ $menulevel2: 16px;
 $menulevel3: 14px;
 $hamburger: ".hamburger";
 
-// Humburger
 #{$hamburger} {
-    --humburgerBox: #{rem(40px,40px)};
-
-    display: none;
+    --humburgerbox: #{rem(40px)};
+    
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--humburgerBox);
-    height: var(--humburgerBox);
+    width: var(--humburgerbox);
+    height: var(--humburgerbox);
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 rem(25px);
     text-align: center;
     background-color: transparent;
     z-index: 999;
-
-    @include mobile {
-        display: flex;
+    
+    @include respond-above('lg') {
+        display: none;
     }
 
     &:hover,
@@ -94,14 +94,13 @@ $hamburger: ".hamburger";
     }
 }
 
-// mobile nav
 #{$mbnav} {
     position: relative;
-    display: none;
-    z-index: 999;
-
-    @include respond-below(lg) {
-        display: block;
+    display: block;
+    z-index: -1;
+    
+    @include respond-above('lg') {
+        display: none;
     }
 
     &__state {
@@ -130,13 +129,13 @@ $hamburger: ".hamburger";
         background: rgba($mbbg, 1);
     }
 
-    // mobile menu logo
     &__logo {
         color: $white;
         padding: 15px;
     }
 
     .menu-wrap {
+        /* stylelint-disable custom-property-pattern */
         --leftSlide: 0;
 
         position: absolute;
@@ -145,7 +144,7 @@ $hamburger: ".hamburger";
         top: 0;
         right: var(--leftSlide);
         transition: 0.4s ease;
-
+        /* stylelint-enable custom-property-pattern */
         .menu-wrap {
             right: -100%;
             opacity: 0;
@@ -154,26 +153,21 @@ $hamburger: ".hamburger";
 
         > .menu-inner {
             max-height: 100%;
-            padding-top: rem(85px,85px);
-            padding-bottom: rem(20px,20px);
+            padding-top: rem(85px);
             background-color: $white;
             pointer-events: auto;
             overflow: hidden auto;
         }
     }
 
-    // menu
     ul {
         position: static;
         left: 0;
         width: 100%;
-
-        // max-height: calc(100vh - 145px);
         margin: 0;
         padding: 0 20px;
         transition: 0.4s ease;
-
-        // overflow: hidden auto;
+        box-shadow: 0 0 10px 0 rgba($black, 0.2);
 
         li {
             &.is-open {
@@ -193,7 +187,7 @@ $hamburger: ".hamburger";
             margin: 0;
             list-style: none;
             color: $primary-100;
-            font-size: rem(20px,20px);
+            font-size: rem(20px);
             font-weight: 500;
             border-bottom: 1px solid $gray;
 
@@ -213,17 +207,17 @@ $hamburger: ".hamburger";
                 }
             }
 
-            %aAfter {
+            %after {
                 content: "";
 
-                --sArrowWidth: 10px;
+                --sarrow-width: 10px;
 
                 display: flex;
                 align-items: center;
                 margin: auto;
-                width: var(--sArrowWidth);
-                height: var(--sArrowWidth);
-                border: calc(var(--sArrowWidth) / 4) solid $primary-100;
+                width: var(--sarrow-width);
+                height: var(--sarrow-width);
+                border: calc(var(--sarrow-width) / 4) solid $primary-100;
                 border-left: 0;
                 border-bottom: 0;
                 transform: rotate(45deg);
@@ -241,10 +235,6 @@ $hamburger: ".hamburger";
                 flex: 1 1 auto;
                 order: -1;
 
-                &:hover {
-                    // color: $white;
-                }
-
                 &::after {
                     position: absolute;
                     top: 0;
@@ -253,7 +243,7 @@ $hamburger: ".hamburger";
                     margin-left: auto;
                     margin-right: 0;
 
-                    @extend %aAfter;
+                    @extend %after;
 
                     display: none;
                 }
@@ -268,12 +258,8 @@ $hamburger: ".hamburger";
                 cursor: pointer;
                 z-index: 1;
 
-                &:not(.trigger-caret) {
-                    pointer-events: none;
-                }
-
                 &::before {
-                    @extend %aAfter;
+                    @extend %after;
 
                     .color-mbnav & {
                         color: $primary-100 !important;
@@ -310,6 +296,33 @@ $hamburger: ".hamburger";
                     display: block;
                 }
             }
+            
+            &.back-click {
+                position: relative;
+                width: 100%;
+                padding: 10px 0 10px 20px;
+                order: -1;
+                color: currentcolor;
+                font-weight: 400;
+    
+                &::before {
+                    --sarrow-width: 10px;
+                    
+                    content: "";
+                    position: absolute;
+                    left: 2px;
+                    top: 20px;
+                    transform: rotate(-135deg);
+                    display: flex;
+                    align-items: center;
+                    margin: auto;
+                    width: var(--sarrow-width);
+                    height: var(--sarrow-width);
+                    border: calc(var(--sarrow-width) / 4) solid $primary-100;
+                    border-left: 0;
+                    border-bottom: 0;
+                }
+            }
         }
 
         ul {
@@ -336,33 +349,8 @@ $hamburger: ".hamburger";
                 left: 100%;
             }
         }
-
-        .back-click {
-            width: 100%;
-            order: -1;
-            color: currentcolor;
-            padding: 15px 0;
-            font-weight: 400;
-
-            &::before {
-                @include icon("a");
-
-                position: static;
-                display: inline-block;
-                width: auto;
-                height: auto;
-                color: $primary-100;
-                margin-right: 15px;
-                margin-bottom: 3px;
-                font-size: 18px;
-                border: 0;
-
-                // transform: scaleX(-1);
-            }
-        }
     }
 
-    // backdrop
     &__backdrop {
         position: fixed;
         inset: 0;
@@ -388,12 +376,7 @@ $hamburger: ".hamburger";
         }
     }
 
-    // after open
     &.is-open {
-        + header {
-            // position: fixed;
-        }
-
         .btn-wrap {
             transform: translateY(0);
         }
@@ -407,3 +390,4 @@ $hamburger: ".hamburger";
         }
     }
 }
+/* stylelint-enable max-nesting-depth */

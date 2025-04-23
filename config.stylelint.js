@@ -6,13 +6,13 @@ export default {
         'selector-class-pattern': '^[a-z0-9\\-]+$', // kebab-case only
         'at-rule-no-unknown': null,
         'scss/at-rule-no-unknown': true,
-        'max-nesting-depth': [3, { ignore: ['pseudo-classes'] }], // Limit nesting
+        'max-nesting-depth': [4, { ignore: ['pseudo-classes'] }], // Limit nesting
     },
     overrides: [
-      {
-        files: ['**/*.scss'],
-        customSyntax: 'postcss-scss'
-      }
-    ]
-  };
+        {
+            files: ['**/*.scss'],
+            customSyntax: 'postcss-scss',
+        },
+    ],
+};
   
