@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying all pages
+ * The template for displaying blog page.
  *
  * @package mytheme
  */
@@ -14,17 +14,18 @@ if ( !defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-	<main>
-		<?php
-		// Display archive title and description
-		echo "<h1>" . get_the_archive_title() . "</h1>";
-		echo "<p>" . get_the_archive_description() . "</p>";
+	<main id="primary" class="site-main">
 
-		// Load the archive posts and category filter
-		echo zwt_archive_post();
+		<?php
+			// Display archive title and description
+			echo "<h1>" . get_the_archive_title() . "</h1>";
+			echo "<p>" . get_the_archive_description() . "</p>";
+
+			// Load the archive posts and category filter
+			echo zwt_archive_post();
 		?>
-	</main>
+
+	</main><!-- #main -->
 
 <?php
 get_footer();
-
