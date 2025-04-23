@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Load the theme functions.
  */
@@ -8,6 +7,91 @@ if (!defined('ABSPATH')) {
 	header('Status: 403 Forbidden');
 	header('HTTP/1.1 403 Forbidden');
 	exit;
+}
+
+/**
+ * Placeholder image.
+ */
+function placeholder_banner($title = 'Banner') {
+    $placeholder_url = get_template_directory_uri() . '/assets/images/placeholder-banner.jpg';
+    return '<img src="' . esc_url($placeholder_url) . '" alt="' . esc_attr($title) . '">';
+}
+
+/**
+ * SVG image.
+ * 
+ * * @param int $attachment_id  The image attachment ID.
+ */
+function acf_svg( $attachment_id ) {
+    $file_path = get_attached_file( $attachment_id );
+
+    if ( ! $file_path || ! file_exists( $file_path ) ) {
+        return '';
+    }
+
+    $mime = mime_content_type( $file_path );
+    if ( strpos( $mime, 'svg' ) !== false ) {
+        return file_get_contents( $file_path );
+    }
+
+    return '';
+
+	/** 
+	 * Example Usage 
+	 * echo acf_svg( $attachment_id );
+	 */
+}
+
+/**
+ * Entry banner.
+ */
+function entry_banner() {
+    if (is_singular()) {
+        $banner_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        $title = get_the_title();
+    } elseif (is_category()) {
+        $banner_image = '';
+        $title = single_cat_title('', false);
+    } elseif (is_tag()) {
+        $banner_image = '';
+        $title = single_tag_title('', false);
+    } elseif (is_post_type_archive()) {
+        $banner_image = '';
+        $title = post_type_archive_title('', false);
+    } elseif (is_archive()) {
+        $banner_image = '';
+        $title = get_the_archive_title();
+    } elseif (is_home()) {
+        $banner_image = '';
+        $title = get_the_title(get_option('page_for_posts'));
+    } elseif (is_search()) {
+        $banner_image = '';
+        $title = 'Search Results for: ' . get_search_query();
+    } elseif (is_404()) {
+        $banner_image = '';
+        $title = 'Page Not Found';
+    } else {
+        $banner_image = '';
+        $title = get_the_title();
+    }
+
+    echo '<div class="entry-banner">';
+
+		if (!empty($banner_image)) {
+			echo '<img src="' . esc_url($banner_image) . '" alt="' . esc_attr($title) . '">';
+		} else {
+			echo placeholder_banner($title);
+		}
+
+		echo '<div class="entry-header">';
+			echo '<h1 class="entry-title">' . esc_html($title) . '</h1>';
+		echo '</div>';
+    echo '</div>';
+
+	/** 
+	 * Example Usage 
+	 * echo hero_innerbanner();
+	 */
 }
 
 /**
@@ -25,7 +109,7 @@ function acf_link($link, $link_class = '')
 
 	// Extract link values.
 	$link_url    = esc_url($link['url']);
-	$link_title  = ! empty($link['title']) ? esc_html($link['title']) : __('Read More', 'text-domain'); // Fallback title.
+	$link_title  = ! empty($link['title']) ? esc_html($link['title']) : __('Read More', THEME_PREFIX); // Fallback title.
 	$link_target = ! empty($link['target']) ? '_blank' : '_self';
 	$rel_attr    = ('_blank' === $link_target) ? 'noopener noreferrer' : 'nofollow';
 	$link_class  = esc_attr($link_class ? $link_class : 'btn');
@@ -83,28 +167,6 @@ function acf_image($image_id, $size = 'medium_large', $class = '')
 }
 
 /**
- * Debug function to print an array/object with optional logging.
- *
- * @param mixed $data  The data to debug.
- * @param bool  $exit  Stop execution after printing (default: false).
- * @param bool  $log   Log to error_log instead of printing (default: false).
- */
-function printr($data, $exit = false, $log = false)
-{
-	if ($log) {
-		error_log(print_r($data, true)); // Log to error_log instead of printing.
-	} else {
-		echo '<pre style="background: #222; color: #0f0; padding: 10px; border-radius: 5px;">';
-		print_r($data);
-		echo '</pre>';
-	}
-
-	if ($exit) {
-		exit;
-	}
-}
-
-/**
  * Trim text to a specific word count.
  *
  * @param string $text   The text to trim.
@@ -125,7 +187,8 @@ function zwt_archive_post() {
     ob_start();
 
     // Display search heading and search form
-    echo "<div>" . esc_html__( 'Search', 'your-textdomain' ) . "</div>";
+    echo "<div>" . esc_html__( 'Search', THEME_PREFIX ) . "</div>";
+
     get_search_form();
 
     // Fetch categories excluding 'Uncategorized'
@@ -137,10 +200,10 @@ function zwt_archive_post() {
 
     // Display category dropdown if categories exist
     if ( !empty( $categories ) ) {
-        echo "<div>" . esc_html__( 'Filter by Category', 'your-textdomain' ) . "</div>";
+        echo "<div>" . esc_html__( 'Filter by Category', THEME_PREFIX ) . "</div>";
         echo "
         <select name='postcategory' id='postcategory'>
-            <option value=''>" . esc_html__( 'Select Category', 'your-textdomain' ) . "</option>";
+            <option value=''>" . esc_html__( 'Select Category', THEME_PREFIX ) . "</option>";
             foreach ( $categories as $category ) {
                 echo '<option value="' . esc_attr( $category->slug ) . '">' . esc_html( $category->name ) . '</option>';
             }
@@ -149,7 +212,7 @@ function zwt_archive_post() {
 
     // Loading indicator for AJAX requests
     echo "
-    <div class='loading' style='display:none;'>" . esc_html__( 'Loading', 'your-textdomain' ) . "</div>
+    <div class='loading' style='display:none;'>" . esc_html__( 'Loading...', THEME_PREFIX ) . "</div>
     <div class='blog-listing'>";
 
     // Check if there are posts available
@@ -181,7 +244,7 @@ function zwt_archive_post() {
 
     else :
         // Display message if no posts are found
-        echo "<p>" . esc_html__( 'No posts found.', 'your-textdomain' ) . "</p>";
+        echo "<p>" . esc_html__( 'No posts found.', THEME_PREFIX ) . "</p>";
     endif;
 
     echo "</div>"; // End of blog listing container
