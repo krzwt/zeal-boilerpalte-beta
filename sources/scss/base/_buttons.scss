@@ -5,54 +5,64 @@
 %btn {
 	--focuc-outline-space: -1px;
 
+	user-select: none;
+
 	position: relative;
+
 	display: inline-block;
-	vertical-align: top;
+
 	padding: rem(11px) rem(24px);
-	color: $white;
+	border: none;
+	border-radius: rem(2px);
+
 	font-size: $font-size-base;
 	font-weight: 700;
 	line-height: 1.5;
+	color: $white;
 	text-align: center;
 	text-decoration: none;
-	border: none;
-	border-radius: rem(2px);
+	vertical-align: top;
+
 	background-color: $primary-100;
+
 	transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
-	user-select: none;
 
 	@include respond-below(md) {
 		padding: rem(9px) rem(14px);
 	}
 
 	&::before {
+		pointer-events: none;
 		content: "";
+
 		position: absolute;
 		inset: var(--focuc-outline-space);
-		opacity: 0;
-		visibility: hidden;
-		transition: 0.4s ease;
+
 		border: 1px solid $gray;
 		border-radius: rem(5px);
-		pointer-events: none;
+
+		visibility: hidden;
+		opacity: 0;
+
+		transition: 0.4s ease;
 	}
 
 	&:hover {
-		color: $primary-100;
-		background-color: $secondary-100;
-		text-decoration: none;
 		cursor: pointer;
+		color: $primary-100;
+		text-decoration: none;
+		background-color: $secondary-100;
 	}
 
 	&:focus {
 		--focuc-outline-space: -4px;
 
-		outline: 0;
 		color: $white;
+		outline: 0;
 
 		&::before {
-			opacity: 1;
 			visibility: visible;
+			opacity: 1;
 		}
 	}
 }
@@ -61,46 +71,57 @@
 	@extend %btn;
 
 	&-sm {
-		font-size: rem(12px);
 		padding: rem(4px) rem(9px);
+		font-size: rem(12px);
 	}
 
 	&-link {
-		position: relative;
-		color: $primary-100;
-		font-size: $font-size-base;
-		font-weight: 700;
-		text-decoration: none;
-		border: 0;
-		transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
 		user-select: none;
 
+		position: relative;
+
+		border: 0;
+
+		font-size: $font-size-base;
+		font-weight: 700;
+		color: $primary-100;
+		text-decoration: none;
+
+		transition: background-color 0.3s ease 0s, color 0.3s ease 0s, border-color 0.3s ease 0s;
+
 		&::before {
+			pointer-events: none;
 			content: "";
+
 			position: absolute;
 			inset: -4px -8px;
-			opacity: 0;
-			visibility: hidden;
-			transition: 0.4s ease;
+
 			border: 1px solid $gray;
-			pointer-events: none;
 			border-radius: rem(20px);
+
+			visibility: hidden;
+			opacity: 0;
+
+			transition: 0.4s ease;
 		}
 
 		&::after {
 			@include icon("c");
 
 			display: inline-flex;
-			font-size: rem(9px);
+
 			margin-left: 8px;
+
+			font-size: rem(9px);
 			color: $primary-100;
+
 			transition: 0.4s ease;
 		}
 
 		&:hover {
+			border-color: currentcolor;
 			color: $secondary-100;
 			text-decoration: none;
-			border-color: currentcolor;
 
 			&::after {
 				transform: translateX(4px);
@@ -112,8 +133,8 @@
 			outline: 0;
 
 			&::before {
-				opacity: 1;
 				visibility: visible;
+				opacity: 1;
 			}
 		}
 	}

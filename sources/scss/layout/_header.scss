@@ -5,17 +5,19 @@
 /* --- header --- */
 .main-header {
 	position: relative;
+	z-index: 999;
+
 	width: 100%;
 	height: auto;
-	background-color: $white;
-	z-index: 999;
 	padding: 15px 0;
+
+	background-color: $white;
 	box-shadow: 0 0 10px 0 rgba($black, 0.2);
 
 	.brand {
 		display: block;
-		width: 64px;
 		flex: 0 0 auto;
+		width: 64px;
 	}
 
 	/* nav */
@@ -40,8 +42,8 @@
 			}
 
 			ul {
-				padding: 0;
 				margin: 0;
+				padding: 0;
 				list-style: none;
 	
 				li {
@@ -61,15 +63,18 @@
 							padding-right: 40px;
 
 							&::after {
+								content: "";
+
 								position: absolute;
-								transform: rotate(135deg);
 								top: 13px;
 								right: 20px;
+								transform: rotate(135deg);
+
 								width: 10px;
 								height: 10px;
-								border-right: 1px solid $primary-100;
 								border-top: 1px solid $primary-100;
-								content: "";
+								border-right: 1px solid $primary-100;
+
 								transition: border-color 0.3s;
 							}
 						}
@@ -77,8 +82,8 @@
 
 					&:hover {
 						> a {
-							background-color: $primary-100;
 							color: $white;
+							background-color: $primary-100;
 
 							&::after {
 								border-color: $white;
@@ -86,24 +91,28 @@
 						}
 
 						>ul {
-							opacity: 1;
 							pointer-events: auto;
+							opacity: 1;
 						}
 					}
 				}
 	
 				&.sub-menu {
-					position: absolute;
-					left: 0;
-					top: 100%;
-					min-width: 200px;
-					opacity: 0;
 					pointer-events: none;
+
+					position: absolute;
+					top: 100%;
+					left: 0;
+
+					min-width: 200px;
+
+					opacity: 0;
+
 					transition: opacity 0.3s;
 
 					.sub-menu {
-						left: 100%;
 						top: 0;
+						left: 100%;
 					}
 
 					li {
@@ -125,8 +134,8 @@
 
 						&:hover {
 							> a {
-								background-color: $white;
 								color: $primary-100;
+								background-color: $white;
 
 								&::after {
 									border-color: $primary-100;

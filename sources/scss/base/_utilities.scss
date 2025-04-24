@@ -12,8 +12,8 @@
 	--gutter: #{$gutters};
 
 	width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
-	margin-left: auto;
 	margin-right: auto;
+	margin-left: auto;
 
 	@include respond-below(md) {
 		--gutter: #{rem(20px)};
@@ -33,8 +33,8 @@
 [class*="cell-"] {
 	position: relative;
 	width: 100%;
-	padding-left: $row-gutters * 0.5;
 	padding-right: $row-gutters * 0.5;
+	padding-left: $row-gutters * 0.5;
 }
 
 /* row and column */
@@ -109,8 +109,8 @@
 	}
 
 	&center {
-		display: block;
 		clear: both;
+		display: block;
 		margin: rem(20px) auto;
 	}
 
