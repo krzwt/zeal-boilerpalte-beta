@@ -25,17 +25,19 @@
 
 .wrapper {
 	position: relative;
+
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
 	width: 100%;
 	min-height: 100%;
-	overflow: hidden;
 }
 
 .main-content {
-	width: 100%;
 	flex-grow: 1;
+	width: 100%;
 }
 
 // Section Spacing
@@ -86,16 +88,18 @@
 
 	ul {
 		@include flex-center;
-		
-		padding: 0;
+
 		margin: 0;
+		padding: 0;
 		list-style: none;
 	}
 
 	li {
 		position: relative;
-		padding: 0;
+
 		margin: 0 rem(10px);
+		padding: 0;
+
 		font-weight: 700;
 		color: rgba($primary-100, 0.60);
 
@@ -107,11 +111,13 @@
 
 		a:not(.prev, .next),
 		span {
-			color: rgba($primary-100, 0.60);
+			border: none;
+
 			font-weight: 700;
 			line-height: 1;
+			color: rgba($primary-100, 0.60);
 			text-decoration: none;
-			border: none;
+
 			transition: 0.4s ease background-color, 0.4s ease color;
 
 			&.active {
@@ -121,18 +127,21 @@
 
 		.prev,
 		.next {
+			cursor: pointer;
 			color: $primary-100;
 			text-decoration: none;
-			cursor: pointer;
 
 			&::after {
 				content: '';
+
 				position: absolute;
 				inset: -2px -4px;
+
 				border: 1px solid $gray;
 				border-radius: rem(6px);
-				opacity: 0;
+
 				visibility: hidden;
+				opacity: 0;
 			}
 
 			&:hover {
@@ -141,15 +150,15 @@
 
 			&:focus {
 				&::after {
-					outline: 0;
-					opacity: 1;
 					visibility: visible;
+					opacity: 1;
+					outline: 0;
 				}
 			}
 
 			&.disabled {
-				opacity: 0.60;
 				pointer-events: none;
+				opacity: 0.60;
 			}
 		}
 

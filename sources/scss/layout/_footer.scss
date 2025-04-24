@@ -4,11 +4,14 @@
 
 /* --- footer --- */
 .main-footer {
+	align-self: end;
+
 	width: 100%;
 	height: auto;
-	align-self: end;
-	line-height: normal;
-	background: $primary-100;
 	padding: 50px 0;
+
+	line-height: normal;
 	text-align: center;
+
+	background: $primary-100;
 }
