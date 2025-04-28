@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Template Name: Web Style Guide
  */
 
-if ( !defined( 'ABSPATH' ) || !function_exists( 'add_filter' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
-	exit;
+if (!defined('ABSPATH') || !function_exists('add_filter')) {
+    header('Status: 403 Forbidden');
+    header('HTTP/1.1 403 Forbidden');
+    exit;
 }
 
 get_header();
@@ -187,4 +188,3 @@ echo '<!-- Content area part -->
 </main>';
 
 get_footer();
-?>
