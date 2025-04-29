@@ -16,7 +16,7 @@ function zwt_ajaxPagination(paged = 1) {
     data.append('nonce', mytheme_ajax_object.nonce);
 
     const loadingIndicator = document.querySelector('.loading');
-    if (loadingIndicator) loadingIndicator.style.display = 'block';
+    if (loadingIndicator) {loadingIndicator.style.display = 'block';}
 
     fetch(mytheme_ajax_object.ajax_url, {
         method: 'POST',
@@ -25,17 +25,17 @@ function zwt_ajaxPagination(paged = 1) {
         .then(response => response.text())
         .then(html => {
             const blogListing = document.querySelector('.blog-listing');
-            if (blogListing) blogListing.innerHTML = html;
+            if (blogListing) {blogListing.innerHTML = html;}
         })
         .finally(() => {
-            if (loadingIndicator) loadingIndicator.style.display = 'none';
+            if (loadingIndicator) {loadingIndicator.style.display = 'none';}
         });
 }
 
 /**
  * Triggers AJAX pagination when the category dropdown is changed.
  */
-document.addEventListener('change', function (e) {
+document.addEventListener('change', function(e) {
     if (e.target && e.target.id === 'postcategory') {
         zwt_ajaxPagination();
     }
@@ -45,7 +45,7 @@ document.addEventListener('change', function (e) {
  * Handles pagination click using event delegation.
  * Prevents default link behavior and fetches the clicked page number.
  */
-document.addEventListener('click', function (e) {
+document.addEventListener('click', function(e) {
     const target = e.target;
     if (target.closest('.zwt-pagination .page-numbers')) {
         e.preventDefault();
