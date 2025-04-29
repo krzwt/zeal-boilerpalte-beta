@@ -44,7 +44,8 @@ cd wp-starter-theme
    - `npm run lint:js:fix` : Automatically fix JavaScript linting issues.
    - `npm run lint:scss` : Lint SCSS files.
    - `npm run lint:scss:fix` : Automatically fix SCSS linting issues.
-   - `npm run lint:phpcs` : Lint PHP files using PSR12 standard.
+   - `npm run phpcs` :  PHP files using PSR12 standard.
+   - `npm run phpcbf` : php code beautifier and fixer.
    - `npm run lint` : Run all linting checks.
    - `npm run lint:fix` : Automatically fix all linting issues.
 
