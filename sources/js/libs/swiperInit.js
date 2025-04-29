@@ -1,11 +1,11 @@
 // swiperInit.js
-import Swiper from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import Swiper from 'swiper/bundle';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css/bundle';
 
 export const initHomeSlider = () => {
     return new Swiper('.home-slider', {
+        modules: [Navigation, Pagination],
         loop: true,
         navigation: {
             nextEl: '.home-next',
@@ -20,6 +20,7 @@ export const initHomeSlider = () => {
 
 export const initTestimonialSlider = () => {
     return new Swiper('.testimonial-slider', {
+        modules: [Navigation, Pagination],
         loop: true,
         slidesPerView: 2,
         spaceBetween: 30,
