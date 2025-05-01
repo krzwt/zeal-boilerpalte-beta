@@ -90,9 +90,10 @@ export default {
     },
 
     resolve: {
-        extensions: ['.scss'],
+        extensions: ['.scss','.js'],
         alias: {
             '@scss': path.resolve(dirname, 'sources/scss'),
+            '@js': path.resolve(dirname, 'sources/js'),
         },
     },
 
