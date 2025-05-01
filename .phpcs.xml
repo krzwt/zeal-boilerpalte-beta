@@ -4,6 +4,11 @@
 
   <rule ref="PSR12" />
 
+  <!-- Disable the side effects warning -->
+  <rule ref="PSR1.Files.SideEffects">
+    <severity>0</severity>
+  </rule>
+
   <!-- Disable line length rule -->
   <rule ref="Generic.Files.LineLength">
     <properties>
