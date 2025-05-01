@@ -22,13 +22,13 @@ function disable_wp_emojis()
 add_action('init', 'disable_wp_emojis');
 
 // Register AJAX actions for logged-in and non-logged-in users
-add_action('wp_ajax_zwt_ajaxsearch_filter', 'zwt_ajaxsearch_filter');
-add_action('wp_ajax_nopriv_zwt_ajaxsearch_filter', 'zwt_ajaxsearch_filter');
+add_action('wp_ajax_mytheme_ajaxsearch_filter', 'mytheme_ajaxsearch_filter');
+add_action('wp_ajax_nopriv_mytheme_ajaxsearch_filter', 'mytheme_ajaxsearch_filter');
 
 /**
  * AJAX Callback Function: Fetch and Filter Posts
  */
-function zwt_ajaxsearch_filter()
+function mytheme_ajaxsearch_filter()
 {
     // Verify nonce for security
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ajax-nonce')) {
@@ -72,12 +72,12 @@ function zwt_ajaxsearch_filter()
             $loop_output .= '
             <article>
                 <h2><a href="' . esc_url(get_the_permalink()) . '">' . esc_html(get_the_title()) . '</a></h2>
-                <p>' . esc_html__(get_the_excerpt(), 'your-textdomain') . '</p>
+                <p>' . esc_html__(get_the_excerpt(), THEME_PREFIX) . '</p>
             </article>';
         endwhile;
 
         // Generate pagination links
-        $loop_output .= "<div class='zwt-pagination'>";
+        $loop_output .= "<div class='pagination'>";
 
         $big = 999999999; // Unlikely integer for pagination replacement
         $pagination = paginate_links(array(
@@ -97,7 +97,7 @@ function zwt_ajaxsearch_filter()
 
         $loop_output .= "</div>";
     } else {
-        $loop_output .= '<p>' . esc_html__('No posts found.', 'your-textdomain') . '</p>';
+        $loop_output .= '<p>' . esc_html__('No posts found.', THEME_PREFIX) . '</p>';
     }
 
     // Output the generated content
