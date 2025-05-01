@@ -1,4 +1,3 @@
-const $ = jQuery.noConflict();
 const DeviceMenu = () => {
     /* Responsive Navigation */
     const hamBurger = document.querySelector('.hamburger');
