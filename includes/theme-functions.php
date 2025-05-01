@@ -187,7 +187,7 @@ function trim_excerpt($text, $limit = 55)
     return esc_html($text);
 }
 
-function zwt_archive_post()
+function mytheme_archive_post()
 {
     ob_start();
 
@@ -232,7 +232,7 @@ function zwt_archive_post()
         endwhile;
 
         // Pagination Section
-        echo "<div class='zwt-pagination'>";
+        echo "<div class='pagination'>";
 
         global $wp_query;
         $big = 999999999; // Need an unlikely integer to replace with the actual page number
