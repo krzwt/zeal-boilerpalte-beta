@@ -1,4 +1,4 @@
-var $ = jQuery.noConflict();
+const $ = jQuery.noConflict();
 const DeviceMenu = () => {
     /* Responsive Navigation */
     const hamBurger = document.querySelector('.hamburger');
@@ -72,7 +72,7 @@ const DeviceMenu = () => {
         });
     }
   
-   // === First part: wrapAll ===
+    // === First part: wrapAll ===
     const menuInner = document.querySelector('.mbnav__inner');
     const children = Array.from(menuInner.children);
 
