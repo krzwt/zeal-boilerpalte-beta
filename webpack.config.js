@@ -18,11 +18,13 @@ const dirname = path.dirname(filename);
 const isDev = process?.argv?.includes('--watch') || false;
 /* eslint-enable no-undef */
 
+const jsFilename = isDev ? 'js/[name].dev.js' : 'js/[name].[contenthash].js';
+const cssFilename = isDev ? 'css/[name].dev.css' : 'css/[name].[contenthash].css';
+
 // Base plugins always applied
 const plugins = [
     new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash].css',
-        chunkFilename: 'css/[id].[contenthash].css',
+        filename: cssFilename,
     }),
     new WebpackManifestPlugin({
         publicPath: '/',     // Ensure proper public path
@@ -46,7 +48,7 @@ export default {
 
     output: {
         path: path.resolve(dirname, 'assets'),
-        filename: 'js/[name].[contenthash].js',
+        filename: jsFilename,
         clean: true,
         publicPath: '/',
     },
@@ -90,9 +92,10 @@ export default {
     },
 
     resolve: {
-        extensions: ['.scss'],
+        extensions: ['.scss','.js'],
         alias: {
             '@scss': path.resolve(dirname, 'sources/scss'),
+            '@js': path.resolve(dirname, 'sources/js'),
         },
     },
 

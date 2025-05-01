@@ -1,6 +1,6 @@
-import { initHomeSlider } from './libs/swiperInit.js';
-import deviceMenu from './libs/deviceMenu.js';
-import { initFancybox } from './libs/fancybox.js';
+import { initHomeSlider } from '@js/libs/swiperInit.js';
+import deviceMenu from '@js/libs/deviceMenu.js';
+import { initFancybox } from '@js/libs/fancybox.js';
 
 initHomeSlider();
 deviceMenu();

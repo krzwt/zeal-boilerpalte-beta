@@ -68,6 +68,10 @@
     "*.scss": [
       "stylelint -c config.stylelint.js --fix",
       "git add"
+    ],
+    "*.php": [
+      "phpcs",
+      "git add"
     ]
   }
 }
