@@ -8,14 +8,16 @@
   "description": "A starter theme for WordPress with modern JavaScript and CSS tooling.",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch --mode development",
-    "build": "vite build --mode production",
+    "dev": "cross-env NODE_ENV=development vite build --watch",
+    "build": "cross-env NODE_ENV=production vite build",
     "lint:js": "eslint -c config.eslint.js sources/**/*.js",
     "lint:js:fix": "eslint -c config.eslint.js sources/**/*.js --fix",
     "lint:scss": "stylelint -c config.stylelint.js sources/**/*.scss",
     "lint:scss:fix": "stylelint -c config.stylelint.js sources/**/*.scss --fix",
     "lint": "npm run lint:js && npm run lint:scss",
-    "lint:fix": "npm run lint:js:fix && npm run lint:scss:fix"
+    "lint:fix": "npm run lint:js:fix && npm run lint:scss:fix",
+    "phpcs": "phpcs",
+    "phpcbf": "phpcbf"
   },
   "keywords": [
     "WordPress",
@@ -29,24 +31,27 @@
   "devDependencies": {
     "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
     "@types/jquery": "^3.5.32",
+    "cross-env": "^7.0.3",
+    "cspell": "^8.18.1",
     "eslint": "^9.23.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.5.0",
     "sass": "^1.86.3",
     "stylelint": "^16.18.0",
     "stylelint-config-clean-order": "^7.0.0",
     "stylelint-config-standard": "^37.0.0",
-    "stylelint-config-standard-scss": "^14.0.0",
-    "cspell": "^8.18.1",
-     "husky": "^8.0.0",
-     "lint-staged": "^15.5.0"
+    "stylelint-config-standard-scss": "^14.0.0"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
+    "autoprefixer": "^10.4.21",
     "jquery": "^3.7.1",
     "swiper": "^11.2.6",
     "vite": "^6.3.5"
   },
-   "lint-staged": {
+  "lint-staged": {
     "sources/**/*.js": [
       "eslint -c config.eslint.js --fix",
       "git add"

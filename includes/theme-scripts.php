@@ -16,19 +16,45 @@ if (!defined('ABSPATH')) {
 function mytheme_scripts()
 {
     wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION);
-
     wp_enqueue_script('jquery');
+    $manifest_path = get_template_directory() . '/assets/.vite/manifest.json';
 
-    $manifest_path = get_template_directory() . '/assets/manifest.json';
     if (file_exists($manifest_path)) {
         $manifest = json_decode(file_get_contents($manifest_path), true);
 
-        if (isset($manifest['main.css'])) {
-            wp_enqueue_style(THEME_PREFIX . '-style', get_template_directory_uri() . '/assets' . $manifest['main.css'], array(), _THEME_VERSION);
-        }
+        foreach ($manifest as $key => $entry) {
+            // Enqueue JS file (only if it's an entry point and ends in .js)
+            if (!empty($entry['isEntry']) && isset($entry['file']) && substr($entry['file'], -3) === '.js') {
+                wp_enqueue_script(
+                    THEME_PREFIX . '-script-' . md5($entry['file']),
+                    get_template_directory_uri() . '/assets/' . ltrim($entry['file'], '/'),
+                    array(), // Add dependencies if needed
+                    _THEME_VERSION,
+                    true
+                );
+            }
 
-        if (isset($manifest['main.js'])) {
-            wp_enqueue_script(THEME_PREFIX . '-scripts', get_template_directory_uri() . '/assets' . $manifest['main.js'], array(), _THEME_VERSION, true);
+            // Enqueue associated CSS files
+            if (isset($entry['css']) && is_array($entry['css'])) {
+                foreach ($entry['css'] as $css_file) {
+                    wp_enqueue_style(
+                        THEME_PREFIX . '-style-' . md5($css_file),
+                        get_template_directory_uri() . '/assets/' . ltrim($css_file, '/'),
+                        array(),
+                        _THEME_VERSION
+                    );
+                }
+            }
+
+            // Handle standalone CSS entries (e.g., style.scss output)
+            if (!empty($entry['isEntry']) && isset($entry['file']) && substr($entry['file'], -4) === '.css') {
+                wp_enqueue_style(
+                    THEME_PREFIX . '-style-' . md5($entry['file']),
+                    get_template_directory_uri() . '/assets/' . ltrim($entry['file'], '/'),
+                    array(),
+                    _THEME_VERSION
+                );
+            }
         }
     }
 
