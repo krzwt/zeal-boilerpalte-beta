@@ -1,10 +1,5 @@
 import { defineConfig } from 'vite'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-// Resolve __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import path, { resolve } from 'path'
 
 export default defineConfig(() => {
   const isProduction = process.env.NODE_ENV === 'production';
@@ -18,8 +13,8 @@ export default defineConfig(() => {
       minify: isProduction,
       rollupOptions: {
         input: {
-          app: path.resolve(__dirname, 'sources/js/script.js'),
-          style: path.resolve(__dirname, 'sources/scss/style.scss'),
+          app: resolve(__dirname, 'sources/js/script.js'),
+          style: resolve(__dirname, 'sources/scss/style.scss'),
         },
         output: {
           entryFileNames: isProduction ? 'js/[name].[hash].js' : 'js/[name].js',
@@ -48,10 +43,10 @@ export default defineConfig(() => {
     },
     resolve: {
       alias: {
-        '@scripts': path.resolve(__dirname, 'sources/js'),
-        '@scss': path.resolve(__dirname, 'sources/scss'),
-        '@images': path.resolve(__dirname, 'sources/images'),
-        '@fonts': path.resolve(__dirname, 'sources/fonts'),
+        '@scripts': resolve(__dirname, 'sources/js'),
+        '@scss': resolve(__dirname, 'sources/scss'),
+        '@images': resolve(__dirname, 'sources/images'),
+        '@fonts': resolve(__dirname, 'sources/fonts'),
       },
     }
   }
