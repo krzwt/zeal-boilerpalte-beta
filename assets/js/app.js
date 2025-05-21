@@ -12416,4 +12416,3 @@ const initFancybox = () => {
 initHomeSlider();
 DeviceMenu();
 initFancybox();
-//# sourceMappingURL=app.js.map

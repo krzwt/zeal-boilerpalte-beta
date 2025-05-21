@@ -1657,33 +1657,6 @@ select:-webkit-autofill:focus {
   background-color: transparent;
 }
 
-.entry-banner {
-  position: relative;
-  overflow: hidden;
-  height: 300px;
-}
-.entry-banner img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.entry-banner .entry-header {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-.entry-banner .entry-title {
-  margin: 0;
-  font-size: 2rem;
-  color: white;
-  text-transform: uppercase;
-}
-
 :root {
   --space-lg: 6.25rem;
   --space-md: 4.688rem;
@@ -2252,4 +2225,31 @@ select:-webkit-autofill:focus {
   line-height: normal;
   text-align: center;
   background: #1eb2a6;
+}
+
+.entry-banner {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+.entry-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.entry-banner .entry-header {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.entry-banner .entry-title {
+  margin: 0;
+  font-size: 2rem;
+  color: white;
+  text-transform: uppercase;
 }

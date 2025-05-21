@@ -22,26 +22,6 @@ $decimal-value: true !default;
     @return math.div($height, $width) * 100%;
 }
 
-// common folder path
-@function assets($filetype, $filename) {
-    @return url("../" + $filetype + "/" + $filename);
-}
-
-// image path
-@function image($filename) {
-    @return assets("images", $filename);
-}
-
-// fonts path
-@function font($filename) {
-    @return assets("fonts", $filename);
-}
-
-// icons path
-@function icon-font($filename) {
-    @return assets("fonts/icons-fonts", $filename);
-}
-
 // letter spacing add in px
 @function ls($val) {
     @return ($val * 0.001) * 1em;
