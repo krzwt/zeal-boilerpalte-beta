@@ -15,10 +15,11 @@ if (!defined('ABSPATH')) {
  */
 function mytheme_scripts()
 {
+
     wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION);
     wp_enqueue_script('jquery');
     $manifest_path = get_template_directory() . '/assets/.vite/manifest.json';
-
+    $theme_assets_path = get_template_directory_uri() . '/assets/';
     if (file_exists($manifest_path)) {
         $manifest = json_decode(file_get_contents($manifest_path), true);
 
@@ -27,7 +28,7 @@ function mytheme_scripts()
             if (!empty($entry['isEntry']) && isset($entry['file']) && substr($entry['file'], -3) === '.js') {
                 wp_enqueue_script(
                     THEME_PREFIX . '-script-' . md5($entry['file']),
-                    get_template_directory_uri() . '/assets/' . ltrim($entry['file'], '/'),
+                    $theme_assets_path . ltrim($entry['file'], '/'),
                     array(), // Add dependencies if needed
                     _THEME_VERSION,
                     true
@@ -39,7 +40,7 @@ function mytheme_scripts()
                 foreach ($entry['css'] as $css_file) {
                     wp_enqueue_style(
                         THEME_PREFIX . '-style-' . md5($css_file),
-                        get_template_directory_uri() . '/assets/' . ltrim($css_file, '/'),
+                        $theme_assets_path . ltrim($css_file, '/'),
                         array(),
                         _THEME_VERSION
                     );
@@ -50,7 +51,7 @@ function mytheme_scripts()
             if (!empty($entry['isEntry']) && isset($entry['file']) && substr($entry['file'], -4) === '.css') {
                 wp_enqueue_style(
                     THEME_PREFIX . '-style-' . md5($entry['file']),
-                    get_template_directory_uri() . '/assets/' . ltrim($entry['file'], '/'),
+                    $theme_assets_path . ltrim($entry['file'], '/'),
                     array(),
                     _THEME_VERSION
                 );
