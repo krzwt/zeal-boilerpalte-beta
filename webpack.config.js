@@ -6,8 +6,8 @@ import TerserPlugin from 'terser-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
-import { PurgeCSSPlugin } from 'purgecss-webpack-plugin';
-import { globSync } from 'glob';
+// import { PurgeCSSPlugin } from 'purgecss-webpack-plugin';
+import { glob } from 'glob';
 
 // Get current file path and directory
 const filename = fileURLToPath(import.meta.url);
@@ -17,6 +17,21 @@ const dirname = path.dirname(filename);
 /* eslint-disable no-undef */
 const isDev = process?.argv?.includes('--watch') || false;
 /* eslint-enable no-undef */
+
+const enableModules = true; // Toggle this to true or false
+const getModuleEntries = () => {
+	const files = glob.sync("sources/js/modules/**/*.js");
+	const entries = {};
+
+	files.forEach((file) => {
+		const name = path
+			.relative("sources/js", file)
+			.replace(/\.js$/, "")
+			.replace(/\\/g, "/");
+		entries[name] = path.resolve(dirname, file);
+	});
+	return entries;
+};
 
 const jsFilename = isDev ? 'js/[name].dev.js' : 'js/[name].[contenthash].js';
 const cssFilename = isDev ? 'css/[name].dev.css' : 'css/[name].[contenthash].css';
@@ -30,8 +45,8 @@ const plugins = [
         publicPath: '/',     // Ensure proper public path
         basePath: '',        // No double prefix
     }),
-    // new PurgeCSSPlugin({
-    //     paths: globSync(`${dirname}/**/*.php`),
+    //  new PurgeCSSPlugin({
+    //     paths: glob(`${dirname}/**/*.php`),
     //     safelist: [], // Remove all safelisting temporarily
     //     defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
     //     verbose: true,
@@ -44,6 +59,7 @@ export default {
 
     entry: {
         main: ['./sources/js/script.js', './sources/scss/style.scss'],
+        ...(enableModules ? getModuleEntries() : {})
     },
 
     output: {
