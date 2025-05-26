@@ -37,10 +37,10 @@ export default (env, argv) => {
 	};
 
 	const jsFilename = isDev
-		? "js/[name].dev.js"
+		? "js/[name].js"
 		: "js/[name].[contenthash].js";
 	const cssFilename = isDev
-		? "css/[name].dev.css"
+		? "css/[name].css"
 		: "css/[name].[contenthash].css";
 
 	// Base plugins always applied
