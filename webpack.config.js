@@ -55,7 +55,7 @@ export default (env, argv) => {
 
 		new WebpackBuildNotifierPlugin({
 			title: "Webpack Notification",
-			suppressSuccess: true, 
+			suppressSuccess: true,
 			suppressWarning: false,
 			suppressCompileStart: true,
 			successSound: false,
@@ -65,21 +65,20 @@ export default (env, argv) => {
 		}),
 
 		new WebpackBar(),
-
-		...(isProd
-			? [
-				new PurgeCSSPlugin({
-					paths: glob.sync(`${dirname}/**/*.{php,js}`, {
-						nodir: true,
-					}),
-					safelist: [/^swiper-/, /^fancybox/],
-					defaultExtractor: (content) =>
-						content.match(/[\w-]+/g) || [],
-					verbose: true,
-				}),
-			  ]
-			: []),
 	];
+
+	if (isProd) {
+		plugins.push(
+			new PurgeCSSPlugin({
+				paths: glob.sync(`${dirname}/**/*.{php,js}`, {
+					nodir: true,
+				}),
+				safelist: [/^swiper-/, /^fancybox/],
+				defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
+				verbose: true,
+			})
+		);
+	}
 
 	return {
 		mode: isDev ? "development" : "production",
