@@ -1,7 +1,4 @@
-// Variable and Mixin
-@use "abstracts/core" as abstracts;
-
-// Base
+// Base styles
 @use "base/core" as base;
 
 // Components
@@ -9,3 +6,6 @@
 
 // Layout
 @use "layout/core" as layout;
+
+// Templates
+@use "templates/core" as templates;
