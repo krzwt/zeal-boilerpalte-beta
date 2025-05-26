@@ -2,7 +2,7 @@
 	"name": "wp-starter-theme",
 	"version": "1.0.0",
 	"engines": {
-		"node": ">=22"
+		"node": ">=20"
 	},
 	"private": true,
 	"description": "A starter theme for WordPress with modern JavaScript and CSS tooling.",
