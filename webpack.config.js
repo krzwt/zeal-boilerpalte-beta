@@ -2,7 +2,6 @@
 
 import path from "path";
 import { fileURLToPath } from "node:url";
-import { readFileSync } from "fs";
 import TerserPlugin from "terser-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
@@ -11,6 +10,8 @@ import { PurgeCSSPlugin } from "purgecss-webpack-plugin";
 import { glob } from "glob";
 import WebpackBuildNotifierPlugin from "webpack-build-notifier";
 import WebpackBar from "webpackbar";
+import whitelist from './purgecss-safelist.js';
+
 
 // Export Webpack config object
 export default (env, argv) => {
@@ -66,19 +67,13 @@ export default (env, argv) => {
 		new WebpackBar(),
 	];
 
-	// Read and parse JSON safelist
-	const safelistRaw = JSON.parse(
-		readFileSync("./purgecss-safelist.json", "utf8")
-	);
-
-	// Convert regex strings to RegExp objects
-	const safelist = safelistRaw.map((item) => {
+	
+	// Purging
+	const safelist = whitelist.map((item) => {
 		return item.startsWith("^") || item.endsWith("$")
 			? new RegExp(item)
 			: item;
 	});
-
-	// Purging
 	if (isProd) {
 		plugins.push(
 			new PurgeCSSPlugin({
