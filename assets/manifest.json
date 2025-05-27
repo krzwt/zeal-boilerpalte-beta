@@ -1,10 +1,10 @@
 {
-  "main.js": "/js/main.a1eafa57544ef0558900.js",
-  "main.css": "/css/main.bef90c93420df936c73e.css",
-  "modules/ajax-scripts.js": "/js/modules/ajax-scripts.1f37df343152c15699c8.js",
-  "library/swiper.js": "/js/library/swiper.67756fdd4125b18a754a.js",
-  "library/common.css": "/css/library/common.98466cbdcb3d3135031d.css",
-  "library/fancyapps.js": "/js/library/fancyapps.cb7118686bad2014354c.js",
-  "main.css.map": "/css/main.bef90c93420df936c73e.css.map",
-  "common.css.map": "/css/library/common.98466cbdcb3d3135031d.css.map"
+  "main.js": "/js/main-44f8b41abb51cc909ae0.js",
+  "main.css": "/css/main-6e2969cbee3b08c37d80.css",
+  "modules/ajax-scripts.js": "/js/modules/ajax-scripts-1f37df343152c15699c8.js",
+  "library/swiper.js": "/js/library/swiper-67756fdd4125b18a754a.js",
+  "library/common.css": "/css/library/common-016fc82e67ccad38e718.css",
+  "library/fancyapps.js": "/js/library/fancyapps-cb7118686bad2014354c.js",
+  "main-css.map": "/css/main-6e2969cbee3b08c37d80.css.map",
+  "common-css.map": "/css/library/common-016fc82e67ccad38e718.css.map"
 }
