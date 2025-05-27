@@ -1,4 +1,4 @@
-# WP Starter Theme
+# WPNest Theme
 
 A starter theme for WordPress with modern JavaScript and CSS tooling. This theme leverages Webpack, Sass, and modern JavaScript features to build a highly optimized, scalable WordPress theme.
 
