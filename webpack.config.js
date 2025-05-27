@@ -38,10 +38,10 @@ export default (env, argv) => {
 		return entries;
 	};
 
-	const jsFilename = isDev ? "js/[name].js" : "js/[name].[contenthash].js";
+	const jsFilename = isDev ? "js/[name].js" : "js/[name]-[contenthash].js";
 	const cssFilename = isDev
 		? "css/[name].css"
-		: "css/[name].[contenthash].css";
+		: "css/[name]-[contenthash].css";
 
 	// Base plugins always applied
 	const plugins = [
