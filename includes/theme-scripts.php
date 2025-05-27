@@ -75,15 +75,11 @@ function zealbaseScripts()
     themeJS('modules/ajax-scripts.js');
 
     // Localize the script to pass AJAX URL and nonce to JavaScript
-    $key = 'modules/ajax-scripts.js';
-    $manifest = themeManifest();
-    $filename = isset($manifest[$key]) ? ltrim($manifest[$key], '/') : 'js/' . ltrim($key, '/');
-    $basename = pathinfo($filename, PATHINFO_FILENAME);
-    $final_name = basename($basename);
+    wp_enqueue_script(THEME_PREFIX . '-ajax-script', get_template_directory_uri() . '/sources/js/modules/ajax-scripts.js', array(), _THEME_VERSION, true);
 
     // Enqueue the custom AJAX handling script
     wp_localize_script(
-        THEME_PREFIX . '-' . $final_name,
+        THEME_PREFIX . '-ajax-script',
         'zealbase_ajax_object',
         array(
             'ajax_url' => admin_url('admin-ajax.php'),
