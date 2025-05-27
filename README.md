@@ -17,6 +17,8 @@ A starter theme for WordPress with modern JavaScript and CSS tooling. This theme
 - **Webpack Manifest Plugin** to generate an asset manifest for server-side integration.
 - **ESLint and Stylelint** for enforcing code standards in JavaScript and SCSS.
 - **Husky** and **lint-staged** to run linters automatically before commits, ensuring clean code.
+- **PHP Code Sniffer (phpcs)** for enforcing WordPress and PSR-12 PHP coding standards.
+- **PHP Code Beautifier and Fixer (phpcbf)** for auto-fixing PHP coding standard issues.
 
 ## Installation
 
