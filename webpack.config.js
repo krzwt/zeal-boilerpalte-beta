@@ -10,7 +10,7 @@ import { PurgeCSSPlugin } from "purgecss-webpack-plugin";
 import { glob } from "glob";
 import WebpackBuildNotifierPlugin from "webpack-build-notifier";
 import WebpackBar from "webpackbar";
-import whitelist from './purgecss-safelist.js';
+import whitelist from './config/purgecss-safelist.js';
 
 
 // Export Webpack config object
