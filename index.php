@@ -3,7 +3,7 @@
 /**
  * The template for displaying blog page.
  *
- * @package mytheme
+ * @package ZealBase
  */
 
 if (!defined('ABSPATH')) {
@@ -19,7 +19,7 @@ get_header();
 
 <main id="content" class="main-content">
 
-    <?php echo mytheme_archive_post(); ?>
+    <?php echo zealbase_archive_post(); ?>
 
 </main><!-- #main -->
 

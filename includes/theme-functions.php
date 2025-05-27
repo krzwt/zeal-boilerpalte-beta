@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 /**
  * edit page/post.
  */
-function mytheme_edit_post_link()
+function zealbase_edit_post_link()
 {
     if (get_edit_post_link() && ! is_admin_bar_showing()) {
         echo '<div class="entry-footer">';
@@ -30,7 +30,7 @@ function mytheme_edit_post_link()
 
     /**
      * Example Usage
-     * echo mytheme_edit_post_link();
+     * echo zealbase_edit_post_link();
      */
 }
 
@@ -39,7 +39,7 @@ function mytheme_edit_post_link()
  */
 function placeholder_image($title = 'Banner')
 {
-    $placeholder_url = get_template_directory_uri() . '/assets/images/placeholder-image.jpg';
+    $placeholder_url = get_template_directory_uri() . '/sources/images/placeholder-image.jpg';
     return '<img src="' . esc_url($placeholder_url) . '" alt="' . esc_attr($title) . '">';
 
     /**
@@ -216,7 +216,7 @@ function trim_excerpt($text, $limit = 55)
     return esc_html($text);
 }
 
-function mytheme_archive_post()
+function zealbase_archive_post()
 {
     ob_start();
 

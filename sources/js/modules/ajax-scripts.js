@@ -1,27 +1,27 @@
 /* eslint-env browser */
-/* global fetch, FormData, mytheme_ajax_object */
+/* global fetch, FormData, zealbase_ajax_object */
 
 /**
  * Handles AJAX-based pagination for blog listing.
  * Fetches filtered posts based on category and page number.
  * @param {number} paged - The page number to fetch (default is 1).
  */
-function mytheme_ajaxPagination(paged = 1) {
+function zealbase_ajaxPagination(paged = 1) {
     const postcategoryElement = document.getElementById('postcategory');
     const postcategory = postcategoryElement ? postcategoryElement.value : '';
 
     const data = new FormData();
-    data.append('action', 'mytheme_ajaxsearch_filter');
+    data.append('action', 'zealbase_ajaxsearch_filter');
     data.append('postcategory', postcategory);
     data.append('paged', paged);
-    data.append('nonce', mytheme_ajax_object.nonce);
+    data.append('nonce', zealbase_ajax_object.nonce);
 
     const loadingIndicator = document.querySelector('.loading');
     if (loadingIndicator) {
         loadingIndicator.style.display = 'block';
     }
 
-    fetch(mytheme_ajax_object.ajax_url, {
+    fetch(zealbase_ajax_object.ajax_url, {
         method: 'POST',
         body: data,
     })
@@ -42,7 +42,7 @@ function mytheme_ajaxPagination(paged = 1) {
 /** Trigger AJAX pagination when the category dropdown changes */
 document.addEventListener('change', function(e) {
     if (e.target && e.target.id === 'postcategory') {
-        mytheme_ajaxPagination();
+        zealbase_ajaxPagination();
     }
 });
 
@@ -55,7 +55,7 @@ document.addEventListener('click', function(e) {
         const pageValue = pageLink.textContent.trim();
         const page = parseInt(pageValue, 10);
         if (!isNaN(page)) {
-            mytheme_ajaxPagination(page);
+            zealbase_ajaxPagination(page);
         }
     }
 });

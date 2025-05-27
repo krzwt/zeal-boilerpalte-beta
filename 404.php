@@ -3,7 +3,7 @@
 /**
  * The template for displaying 404
  *
- * @package mytheme
+ * @package ZealBase
  */
 
 if (!defined('ABSPATH')) {

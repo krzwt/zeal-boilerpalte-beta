@@ -3,7 +3,7 @@
 /**
  * Template Name: Front Page
  *
- * @package mytheme
+ * @package ZealBase
  */
 
 if (!defined('ABSPATH')) {

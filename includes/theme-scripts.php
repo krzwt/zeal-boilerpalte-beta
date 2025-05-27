@@ -42,7 +42,7 @@ function themeCSS($key, $deps = array(), $media = 'all')
 
     if (file_exists($filepath)) {
         $handle = THEME_PREFIX . '-' . sanitize_title(pathinfo($filename, PATHINFO_FILENAME));
-        wp_enqueue_style($handle, $fileuri, $deps, filemtime($filepath), $media);
+        wp_enqueue_style($handle, $fileuri, $deps, _THEME_VERSION, $media);
     }
 }
 
@@ -56,30 +56,40 @@ function themeJS($key, $deps = array('jquery'), $in_footer = true)
 
     if (file_exists($filepath)) {
         $handle = THEME_PREFIX . '-' . sanitize_title(pathinfo($filename, PATHINFO_FILENAME));
-        wp_enqueue_script($handle, $fileuri, $deps, filemtime($filepath), $in_footer);
+        wp_enqueue_script($handle, $fileuri, $deps, _THEME_VERSION, $in_footer);
     }
 }
 
-
-
-function mythemeScripts()
+function zealbaseScripts()
 {
-    wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION);
+    // Default theme style.
+    wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array());
 
+    // Compiled main styles.
     themeCSS('main.css');
-    // themeCSS('library/common.css');
-    // themeJS('library/swiper.js');
-    // themeJS('library/fancyapps.js');
+
+    // Compiled main scripts.
     themeJS('main.js');
-    themeJS('modules/ajax-scripts.js');
+
+    // Compiled ajax scripts.
+    //themeJS('modules/ajax-scripts.js');
 
     // Localize the script to pass AJAX URL and nonce to JavaScript
+    // $key = 'modules/ajax-scripts.js';
+    // $manifest = themeManifest();
+    // $filename = isset($manifest[$key]) ? ltrim($manifest[$key], '/') : 'js/' . ltrim($key, '/');
+    // $basename = pathinfo($filename, PATHINFO_FILENAME);
+    // $final_name = basename($basename);
+
+    // Enqueue the custom AJAX handling script
+    wp_enqueue_script(THEME_PREFIX . '-ajax-script', get_template_directory_uri() . '/sources/js/modules/ajax-scripts.js', array(), _THEME_VERSION, true);
+
     wp_localize_script(
         THEME_PREFIX . '-ajax-script',
-        'mytheme_ajax_object',
+        'zealbase_ajax_object',
         array(
-            'ajax_url' => admin_url('admin-ajax.php'), // AJAX handler URL
-            'nonce' => wp_create_nonce('ajax-nonce') // Security nonce
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('ajax-nonce')
         )
     );
 
@@ -87,4 +97,4 @@ function mythemeScripts()
         wp_enqueue_script('comment-reply');
     }
 }
-add_action('wp_enqueue_scripts', 'mythemeScripts');
+add_action('wp_enqueue_scripts', 'zealbaseScripts');

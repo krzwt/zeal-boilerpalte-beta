@@ -1,13 +1,13 @@
 {
-    "name": "zealplus/theme",
+    "name": "zealbase/theme",
     "autoload": {
         "psr-4": {
-            "Zealplus\\Theme\\": "src/"
+            "zealbase\\Theme\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "zealplus"
+            "name": "zealbase"
         }
     ],
     "require-dev": {

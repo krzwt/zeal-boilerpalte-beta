@@ -2,6 +2,7 @@
 
 import path from "path";
 import { fileURLToPath } from "node:url";
+import { readFileSync } from "fs";
 import TerserPlugin from "terser-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
@@ -36,9 +37,7 @@ export default (env, argv) => {
 		return entries;
 	};
 
-	const jsFilename = isDev
-		? "js/[name].js"
-		: "js/[name].[contenthash].js";
+	const jsFilename = isDev ? "js/[name].js" : "js/[name].[contenthash].js";
 	const cssFilename = isDev
 		? "css/[name].css"
 		: "css/[name].[contenthash].css";
@@ -67,13 +66,26 @@ export default (env, argv) => {
 		new WebpackBar(),
 	];
 
+	// Read and parse JSON safelist
+	const safelistRaw = JSON.parse(
+		readFileSync("./purgecss-safelist.json", "utf8")
+	);
+
+	// Convert regex strings to RegExp objects
+	const safelist = safelistRaw.map((item) => {
+		return item.startsWith("^") || item.endsWith("$")
+			? new RegExp(item)
+			: item;
+	});
+
+	// Purging
 	if (isProd) {
 		plugins.push(
 			new PurgeCSSPlugin({
 				paths: glob.sync(`${dirname}/**/*.{php,js}`, {
 					nodir: true,
 				}),
-				safelist: [/^swiper-/, /^fancybox/],
+				safelist,
 				defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
 				verbose: true,
 			})

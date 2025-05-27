@@ -1,9 +1,9 @@
 <?php
 
 /**
- * mytheme functions and definitions
+ * zealbase functions and definitions
  *
- * @package mytheme
+ * @package ZealBase
  */
 
 if (!defined('ABSPATH')) {
@@ -19,7 +19,7 @@ if (! defined('_THEME_VERSION')) {
 /**
  * Define the default constant that will be used throughout your theme.
  */
-define('THEME_PREFIX', 'mytheme');
+define('THEME_PREFIX', 'zealbase');
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -28,7 +28,7 @@ define('THEME_PREFIX', 'mytheme');
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function mytheme_setup()
+function zealbase_setup()
 {
 
     /**
@@ -77,7 +77,7 @@ function mytheme_setup()
         'menu-2' => esc_html__('Secondary', 'textdomain'),
     ));
 }
-add_action('after_setup_theme', 'mytheme_setup');
+add_action('after_setup_theme', 'zealbase_setup');
 
 /**
  * Enqueue scripts and styles.

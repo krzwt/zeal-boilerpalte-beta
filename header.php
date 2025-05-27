@@ -3,7 +3,7 @@
 /**
  * The template for displaying site header
  *
- * @package mytheme
+ * @package ZealBase
  */
 
 if (!defined('ABSPATH')) {
@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
 <body <?php body_class() ?>>
 <div class="wrapper">
     <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e('Skip to content', 'textdomain'); ?></a>
-    <?php $brand_logo = get_template_directory_uri() . '/assets/images/logo.svg'; ?>
+    <?php $brand_logo = get_template_directory_uri() . '/sources/images/logo.svg'; ?>
     <header class="main-header">
         <div class="container d-flex justify-content-between align-items-center flex-nowrap">
             <?php if ($brand_logo) { ?>

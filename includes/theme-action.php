@@ -22,13 +22,13 @@ function disable_wp_emojis()
 add_action('init', 'disable_wp_emojis');
 
 // Register AJAX actions for logged-in and non-logged-in users
-add_action('wp_ajax_mytheme_ajaxsearch_filter', 'mytheme_ajaxsearch_filter');
-add_action('wp_ajax_nopriv_mytheme_ajaxsearch_filter', 'mytheme_ajaxsearch_filter');
+add_action('wp_ajax_zealbase_ajaxsearch_filter', 'zealbase_ajaxsearch_filter');
+add_action('wp_ajax_nopriv_zealbase_ajaxsearch_filter', 'zealbase_ajaxsearch_filter');
 
 /**
  * AJAX Callback Function: Fetch and Filter Posts
  */
-function mytheme_ajaxsearch_filter()
+function zealbase_ajaxsearch_filter()
 {
     // Verify nonce for security
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ajax-nonce')) {
