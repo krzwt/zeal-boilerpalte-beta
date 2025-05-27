@@ -37,10 +37,10 @@ export default (env, argv) => {
 	};
 
 	const jsFilename = isDev
-		? "js/[name].dev.js"
+		? "js/[name].js"
 		: "js/[name].[contenthash].js";
 	const cssFilename = isDev
-		? "css/[name].dev.css"
+		? "css/[name].css"
 		: "css/[name].[contenthash].css";
 
 	// Base plugins always applied
@@ -55,7 +55,7 @@ export default (env, argv) => {
 
 		new WebpackBuildNotifierPlugin({
 			title: "Webpack Notification",
-			suppressSuccess: true, 
+			suppressSuccess: true,
 			suppressWarning: false,
 			suppressCompileStart: true,
 			successSound: false,
@@ -65,21 +65,20 @@ export default (env, argv) => {
 		}),
 
 		new WebpackBar(),
-
-		...(isProd
-			? [
-				new PurgeCSSPlugin({
-					paths: glob.sync(`${dirname}/**/*.{php,js}`, {
-						nodir: true,
-					}),
-					safelist: [/^swiper-/, /^fancybox/],
-					defaultExtractor: (content) =>
-						content.match(/[\w-]+/g) || [],
-					verbose: true,
-				}),
-			  ]
-			: []),
 	];
+
+	if (isProd) {
+		plugins.push(
+			new PurgeCSSPlugin({
+				paths: glob.sync(`${dirname}/**/*.{php,js}`, {
+					nodir: true,
+				}),
+				safelist: [/^swiper-/, /^fancybox/],
+				defaultExtractor: (content) => content.match(/[\w-]+/g) || [],
+				verbose: true,
+			})
+		);
+	}
 
 	return {
 		mode: isDev ? "development" : "production",
@@ -186,18 +185,18 @@ export default (env, argv) => {
 			splitChunks: {
 				chunks: "all",
 				cacheGroups: {
-					vendors: {
+					libraries: {
 						test: /[\\/]node_modules[\\/]/,
 						name(module) {
 							const context = module.context;
-							if (!context) return "vendor/common";
+							if (!context) return "library/common";
 							const match = context.match(
 								/[\\/]node_modules[\\/](.*?)([\\/]|$)/
 							);
 							const packageName = match
 								? match[1].replace("@", "")
 								: "common";
-							return `vendor/${packageName}`;
+							return `library/${packageName}`;
 						},
 						chunks: "all",
 						enforce: true,
@@ -237,14 +236,14 @@ export default (env, argv) => {
 			moduleAssets: true,
 			assetsSort: "size",
 			groupAssetsByChunk: true,
-			excludeAssets: [/node_modules/, /\.map$/],
+			excludeAssets: [/node_modules/, /\.map$/, /^images\//, /^fonts\//],
 			excludeModules: true,
 		},
 
 		performance: {
 			hints: isDev ? false : "warning",
-			maxEntrypointSize: 512000,
-			maxAssetSize: 512000,
+			maxEntrypointSize: 912000,
+			maxAssetSize: 912000,
 		},
 	};
 };

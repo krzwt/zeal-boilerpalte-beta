@@ -1,14 +1,14 @@
 {
-  "main.css": "/css/main.dev.css",
-  "main.js": "/js/main.dev.js",
-  "modules/ajax-scripts.js": "/js/modules/ajax-scripts.dev.js",
-  "vendor/swiper.js": "/js/vendor/swiper.dev.js",
-  "vendor/common.css": "/css/vendor/common.dev.css",
-  "vendor/fancyapps.js": "/js/vendor/fancyapps.dev.js",
-  "main.dev.css.map": "/css/main.dev.css.map",
-  "main.dev.js.map": "/js/main.dev.js.map",
-  "ajax-scripts.dev.js.map": "/js/modules/ajax-scripts.dev.js.map",
-  "swiper.dev.js.map": "/js/vendor/swiper.dev.js.map",
-  "common.dev.css.map": "/css/vendor/common.dev.css.map",
-  "fancyapps.dev.js.map": "/js/vendor/fancyapps.dev.js.map"
+  "main.css": "/css/main.css",
+  "main.js": "/js/main.js",
+  "modules/ajax-scripts.js": "/js/modules/ajax-scripts.js",
+  "library/swiper.js": "/js/library/swiper.js",
+  "library/common.css": "/css/library/common.css",
+  "library/fancyapps.js": "/js/library/fancyapps.js",
+  "main.css.map": "/css/main.css.map",
+  "main.js.map": "/js/main.js.map",
+  "ajax-scripts.js.map": "/js/modules/ajax-scripts.js.map",
+  "swiper.js.map": "/js/library/swiper.js.map",
+  "common.css.map": "/css/library/common.css.map",
+  "fancyapps.js.map": "/js/library/fancyapps.js.map"
 }

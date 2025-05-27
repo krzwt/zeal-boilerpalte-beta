@@ -1,5 +1,5 @@
 "use strict";
-(globalThis["webpackChunkwp_starter_theme"] = globalThis["webpackChunkwp_starter_theme"] || []).push([["vendor/swiper"],{
+(globalThis["webpackChunkwp_starter_theme"] = globalThis["webpackChunkwp_starter_theme"] || []).push([["library/swiper"],{
 
 /***/ "./node_modules/swiper/modules/a11y.mjs":
 /*!**********************************************!*\
@@ -10616,4 +10616,4 @@ _shared_swiper_core_mjs__WEBPACK_IMPORTED_MODULE_0__.S.use(modules);
 /***/ })
 
 }]);
-//# sourceMappingURL=swiper.dev.js.map
+//# sourceMappingURL=swiper.js.map
