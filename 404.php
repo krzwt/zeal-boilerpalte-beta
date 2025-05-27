@@ -15,19 +15,23 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
-    <main id="primary" class="site-main 404 not-found">
+<?php echo entry_banner(); ?>
 
-        <?php echo entry_banner(); ?>
+<main id="content" class="main-content">
+
+    <div class="error-404 not-found space-lg text-center">
 
         <div class="container">
 
-           <div class="entry-content">
-                <h1>404</h1>
-           </div><!-- .entry-content -->
+            <h1><?php esc_html_e('404', 'textdomain'); ?></h1>
+            
+            <p><?php esc_html_e('Oops! That page can&rsquo;t be found.', 'textdomain'); ?></p>
 
-     </div>
+        </div>
 
-    </main><!-- #main -->
+    </div>
+
+</main><!-- #main -->
 
 <?php
 get_footer();

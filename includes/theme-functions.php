@@ -11,12 +11,42 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * edit page/post.
+ */
+function mytheme_edit_post_link()
+{
+    if (get_edit_post_link() && ! is_admin_bar_showing()) {
+        echo '<div class="entry-footer">';
+        edit_post_link(
+            sprintf(
+                __('Edit <span class="screen-reader-text">%s</span>', 'textdomain'),
+                get_the_title()
+            ),
+            '<span class="edit-link">',
+            '</span>'
+        );
+        echo '</div>';
+    }
+
+    /**
+     * Example Usage
+     * echo mytheme_edit_post_link();
+     */
+}
+
+/**
  * Placeholder image.
  */
-function placeholder_banner($title = 'Banner')
+function placeholder_image($title = 'Banner')
 {
-    $placeholder_url = get_template_directory_uri() . '/assets/images/placeholder-banner.jpg';
+    $placeholder_url = get_template_directory_uri() . '/assets/images/placeholder-image.jpg';
     return '<img src="' . esc_url($placeholder_url) . '" alt="' . esc_attr($title) . '">';
+
+    /**
+     * Example Usage
+     * echo placeholder_image();
+     * echo placeholder_image('Title');
+     */
 }
 
 /**
@@ -79,18 +109,16 @@ function entry_banner()
         $title = get_the_title();
     }
 
-    echo '<div class="entry-banner">';
-
+    echo '<section class="entry-banner">';
     if (!empty($banner_image)) {
         echo '<img src="' . esc_url($banner_image) . '" alt="' . esc_attr($title) . '">';
     } else {
-        echo placeholder_banner($title);
+        echo placeholder_image($title);
     }
-
         echo '<div class="entry-header">';
             echo '<h1 class="entry-title">' . esc_html($title) . '</h1>';
         echo '</div>';
-    echo '</div>';
+    echo '</section>';
 
     /**
      * Example Usage
@@ -113,7 +141,7 @@ function acf_link($link, $link_class = '')
 
     // Extract link values.
     $link_url    = esc_url($link['url']);
-    $link_title  = ! empty($link['title']) ? esc_html($link['title']) : __('Read More', THEME_PREFIX); // Fallback title.
+    $link_title  = ! empty($link['title']) ? esc_html($link['title']) : __('Read More', 'textdomain'); // Fallback title.
     $link_target = ! empty($link['target']) ? '_blank' : '_self';
     $rel_attr    = ('_blank' === $link_target) ? 'noopener noreferrer' : 'nofollow';
     $link_class  = esc_attr($link_class ? $link_class : 'btn');
@@ -164,6 +192,7 @@ function acf_image($image_id, $size = 'medium_large', $class = '')
         esc_attr(wp_get_attachment_metadata($image_id)['width'] ?? ''),
         esc_attr(wp_get_attachment_metadata($image_id)['height'] ?? '')
     );
+
     /**
      * Example Usage
      * echo acf_image( $image_id, 'full', 'banner-image' );
@@ -192,7 +221,7 @@ function mytheme_archive_post()
     ob_start();
 
     // Display search heading and search form
-    echo "<div>" . esc_html__('Search', THEME_PREFIX) . "</div>";
+    echo "<div>" . esc_html__('Search', 'textdomain') . "</div>";
 
     get_search_form();
 
@@ -205,10 +234,10 @@ function mytheme_archive_post()
 
     // Display category dropdown if categories exist
     if (!empty($categories)) {
-        echo "<div>" . esc_html__('Filter by Category', THEME_PREFIX) . "</div>";
+        echo "<div>" . esc_html__('Filter by Category', 'textdomain') . "</div>";
         echo "
         <select name='postcategory' id='postcategory'>
-            <option value=''>" . esc_html__('Select Category', THEME_PREFIX) . "</option>";
+            <option value=''>" . esc_html__('Select Category', 'textdomain') . "</option>";
         foreach ($categories as $category) {
             echo '<option value="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</option>';
         }
@@ -217,7 +246,7 @@ function mytheme_archive_post()
 
     // Loading indicator for AJAX requests
     echo "
-    <div class='loading' style='display:none;'>" . esc_html__('Loading...', THEME_PREFIX) . "</div>
+    <div class='loading' style='display:none;'>" . esc_html__('Loading...', 'textdomain') . "</div>
     <div class='blog-listing'>";
 
     // Check if there are posts available
@@ -249,7 +278,7 @@ function mytheme_archive_post()
         echo "</div>"; // End of pagination
     else :
         // Display message if no posts are found
-        echo "<p>" . esc_html__('No posts found.', THEME_PREFIX) . "</p>";
+        echo "<p>" . esc_html__('No posts found.', 'textdomain') . "</p>";
     endif;
 
     echo "</div>"; // End of blog listing container

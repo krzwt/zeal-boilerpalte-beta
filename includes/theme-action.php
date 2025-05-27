@@ -72,7 +72,7 @@ function mytheme_ajaxsearch_filter()
             $loop_output .= '
             <article>
                 <h2><a href="' . esc_url(get_the_permalink()) . '">' . esc_html(get_the_title()) . '</a></h2>
-                <p>' . esc_html__(get_the_excerpt(), THEME_PREFIX) . '</p>
+                <p>' . esc_html__(get_the_excerpt(), 'textdomain') . '</p>
             </article>';
         endwhile;
 
@@ -83,7 +83,7 @@ function mytheme_ajaxsearch_filter()
         $pagination = paginate_links(array(
             'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
             'format'    => '?paged=%#%',
-            'current'   => max(1, get_query_var('paged')),
+            'current'   => $paged,
             'total'     => $loop->max_num_pages,
             'mid_size'  => 2,
             'end_size'  => 1,
@@ -97,7 +97,7 @@ function mytheme_ajaxsearch_filter()
 
         $loop_output .= "</div>";
     } else {
-        $loop_output .= '<p>' . esc_html__('No posts found.', THEME_PREFIX) . '</p>';
+        $loop_output .= '<p>' . esc_html__('No posts found.', 'textdomain') . '</p>';
     }
 
     // Output the generated content

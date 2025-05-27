@@ -344,12 +344,11 @@ $sides-x: left, right;
 }
 
 /* WordPress default alignment */
-.alignwide {
-	--container-width: #{$container-width};
-
-	@extend %container;
+.alignfull {
+	width: 100%;
 }
 
-.alignfull {
+.alignwide {
+	--container-width: #{$container-width};
 	@extend %container;
 }
