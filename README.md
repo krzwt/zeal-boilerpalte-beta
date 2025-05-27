@@ -32,7 +32,7 @@ To get started with this theme, follow these steps:
 ### Step 1: Clone the Repository
 
 git clone https://github.com/zealousweb/wp-nest.git
-cd wp-starter-theme
+cd wp-nest
 
 
 ### 🛠 All Commands Included:
