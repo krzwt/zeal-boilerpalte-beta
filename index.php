@@ -15,17 +15,13 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
- <main id="primary" class="site-main">
+<?php echo entry_banner(); ?>
 
-        <?php
-            // Display archive title and description
-            echo "<h1>" . get_the_archive_title() . "</h1>";
-            echo "<p>" . get_the_archive_description() . "</p>";
-            // Load the archive posts and category filter
-            echo mytheme_archive_post();
-        ?>
+<main id="content" class="main-content">
 
-    </main><!-- #main -->
+    <?php echo mytheme_archive_post(); ?>
+
+</main><!-- #main -->
 
 <?php
 get_footer();

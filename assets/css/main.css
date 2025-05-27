@@ -478,14 +478,14 @@ table td {
 /**
  * Main content containers
  */
-.alignfull, .alignwide, .container-fluid, .container {
+.alignwide, .container-fluid, .container {
   --gutter: 3.125rem;
   width: min(100% - var(--gutter) * 2, var(--container-width, 100%));
   margin-right: auto;
   margin-left: auto;
 }
 @media (max-width: 767px) {
-  .alignfull, .alignwide, .container-fluid, .container {
+  .alignwide, .container-fluid, .container {
     --gutter: 1.25rem;
   }
 }
@@ -1345,6 +1345,10 @@ table td {
   }
 }
 /* WordPress default alignment */
+.alignfull {
+  width: 100%;
+}
+
 .alignwide {
   --container-width: 73.125rem;
 }

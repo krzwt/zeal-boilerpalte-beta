@@ -32,29 +32,29 @@ if (post_password_required()) {
             $mytheme_comment_count = get_comments_number();
             if ('1' === $mytheme_comment_count) {
                 printf(/* translators: 1: title. */
-                    esc_html__('One thought on &ldquo;%1$s&rdquo;', THEME_PREFIX),
+                    esc_html__('One thought on &ldquo;%1$s&rdquo;', 'textdomain'),
                     '<span>' . wp_kses_post(get_the_title()) . '</span>'
                 );
             } else {
                 printf(/* translators: 1: comment count number, 2: title. */
-                    esc_html(_nx('%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $mytheme_comment_count, 'comments title', THEME_PREFIX)),
+                    esc_html(_nx('%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $mytheme_comment_count, 'comments title', 'textdomain')),
                     number_format_i18n($mytheme_comment_count), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     '<span>' . wp_kses_post(get_the_title()) . '</span>'
                 );
             }
             ?>
-      </h2><!-- .comments-title -->
+    </h2><!-- .comments-title -->
 
         <?php the_comments_navigation(); ?>
 
         <ol class="comment-list">
             <?php
             wp_list_comments(array(
-                    'style'      => 'ol',
-                    'short_ping' => true,
-                ));
+                'style'      => 'ol',
+                'short_ping' => true,
+            ));
             ?>
-       </ol><!-- .comment-list -->
+        </ol><!-- .comment-list -->
 
         <?php
         the_comments_navigation();
@@ -62,11 +62,11 @@ if (post_password_required()) {
         // If comments are closed and there are comments, let's leave a little note, shall we?
         if (! comments_open()) :
             ?>
-            <p class="no-comments"><?php esc_html_e('Comments are closed.', THEME_PREFIX); ?></p>
+            <p class="no-comments"><?php esc_html_e('Comments are closed.', 'textdomain'); ?></p>
             <?php
         endif;
     endif;
-// Check for have_comments().
+    // Check for have_comments().
 
     comment_form();
     ?>
