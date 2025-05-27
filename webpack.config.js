@@ -185,18 +185,18 @@ export default (env, argv) => {
 			splitChunks: {
 				chunks: "all",
 				cacheGroups: {
-					vendors: {
+					libraries: {
 						test: /[\\/]node_modules[\\/]/,
 						name(module) {
 							const context = module.context;
-							if (!context) return "vendor/common";
+							if (!context) return "library/common";
 							const match = context.match(
 								/[\\/]node_modules[\\/](.*?)([\\/]|$)/
 							);
 							const packageName = match
 								? match[1].replace("@", "")
 								: "common";
-							return `vendor/${packageName}`;
+							return `library/${packageName}`;
 						},
 						chunks: "all",
 						enforce: true,
@@ -236,14 +236,14 @@ export default (env, argv) => {
 			moduleAssets: true,
 			assetsSort: "size",
 			groupAssetsByChunk: true,
-			excludeAssets: [/node_modules/, /\.map$/],
+			excludeAssets: [/node_modules/, /\.map$/, /^images\//, /^fonts\//],
 			excludeModules: true,
 		},
 
 		performance: {
 			hints: isDev ? false : "warning",
-			maxEntrypointSize: 512000,
-			maxAssetSize: 512000,
+			maxEntrypointSize: 912000,
+			maxAssetSize: 912000,
 		},
 	};
 };

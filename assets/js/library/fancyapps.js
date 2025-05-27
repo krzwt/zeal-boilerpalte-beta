@@ -1,5 +1,5 @@
 "use strict";
-(globalThis["webpackChunkwp_starter_theme"] = globalThis["webpackChunkwp_starter_theme"] || []).push([["vendor/fancyapps"],{
+(globalThis["webpackChunkwp_starter_theme"] = globalThis["webpackChunkwp_starter_theme"] || []).push([["library/fancyapps"],{
 
 /***/ "./node_modules/@fancyapps/ui/dist/fancybox/fancybox.css":
 /*!***************************************************************!*\
@@ -31,4 +31,4 @@ const t=(t,e=1e4)=>(t=parseFloat(t+"")||0,Math.round((t+Number.EPSILON)*e)/e),e=
 /***/ })
 
 }]);
-//# sourceMappingURL=fancyapps.dev.js.map
+//# sourceMappingURL=fancyapps.js.map

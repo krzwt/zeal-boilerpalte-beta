@@ -78,4 +78,4 @@ document.addEventListener('click', function (e) {
 });
 /******/ })()
 ;
-//# sourceMappingURL=ajax-scripts.dev.js.map
+//# sourceMappingURL=ajax-scripts.js.map

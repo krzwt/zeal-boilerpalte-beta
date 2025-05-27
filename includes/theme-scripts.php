@@ -67,9 +67,9 @@ function mythemeScripts()
     wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array(), _THEME_VERSION);
 
     themeCSS('main.css');
-    // themeCSS('vendor/common.css');
-    // themeJS('vendor/swiper.js');
-    // themeJS('vendor/fancyapps.js');
+    // themeCSS('library/common.css');
+    // themeJS('library/swiper.js');
+    // themeJS('library/fancyapps.js');
     themeJS('main.js');
     themeJS('modules/ajax-scripts.js');
 
