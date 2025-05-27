@@ -68,11 +68,15 @@ function zealbaseScripts()
     // Compiled main styles.
     themeCSS('main.css');
 
+    // library styles.
+    themeCSS('library/common.css');
+
+    // library js.
+    themeJS('library/swiper.js');
+    themeJS('library/fancyapps.js');
+
     // Compiled main scripts.
     themeJS('main.js');
-
-    // Compiled ajax scripts.
-    themeJS('modules/ajax-scripts.js');
 
     // Localize the script to pass AJAX URL and nonce to JavaScript
     wp_enqueue_script(THEME_PREFIX . '-ajax-script', get_template_directory_uri() . '/sources/js/modules/ajax-scripts.js', array(), _THEME_VERSION, true);
