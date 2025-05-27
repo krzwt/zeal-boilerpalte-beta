@@ -3,7 +3,7 @@
 /**
  * The template for displaying archive pages.
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {
@@ -19,7 +19,7 @@ get_header();
 
 <main id="content" class="main-content">
 
-    <?php echo zealbase_archive_post(); ?>
+    <?php echo wpnest_archive_post(); ?>
 
 </main><!-- #main -->
 

@@ -60,7 +60,7 @@ function themeJS($key, $deps = array('jquery'), $in_footer = true)
     }
 }
 
-function zealbaseScripts()
+function wpnestScripts()
 {
     // Default theme style.
     wp_enqueue_style(THEME_PREFIX . '-wp-style', get_stylesheet_uri(), array());
@@ -84,7 +84,7 @@ function zealbaseScripts()
     // Enqueue the custom AJAX handling script
     wp_localize_script(
         THEME_PREFIX . '-ajax-script',
-        'zealbase_ajax_object',
+        'wpnest_ajax_object',
         array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('ajax-nonce')
@@ -95,4 +95,4 @@ function zealbaseScripts()
         wp_enqueue_script('comment-reply');
     }
 }
-add_action('wp_enqueue_scripts', 'zealbaseScripts');
+add_action('wp_enqueue_scripts', 'wpnestScripts');

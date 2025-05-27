@@ -3,7 +3,7 @@
 /**
  * The template for displaying all single posts
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {
@@ -40,7 +40,7 @@ get_header();
             ));
             ?>
 
-            <?php zealbase_edit_post_link(); ?>
+            <?php wpnest_edit_post_link(); ?>
 
         </article><!-- #post-<?php the_ID(); ?> -->
 

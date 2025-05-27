@@ -3,7 +3,7 @@
 /**
  * The template for displaying site header
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {

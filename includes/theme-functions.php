@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 /**
  * edit page/post.
  */
-function zealbase_edit_post_link()
+function wpnest_edit_post_link()
 {
     if (get_edit_post_link() && ! is_admin_bar_showing()) {
         echo '<div class="entry-footer">';
@@ -30,7 +30,7 @@ function zealbase_edit_post_link()
 
     /**
      * Example Usage
-     * echo zealbase_edit_post_link();
+     * echo wpnest_edit_post_link();
      */
 }
 
@@ -216,7 +216,7 @@ function trim_excerpt($text, $limit = 55)
     return esc_html($text);
 }
 
-function zealbase_archive_post()
+function wpnest_archive_post()
 {
     ob_start();
 

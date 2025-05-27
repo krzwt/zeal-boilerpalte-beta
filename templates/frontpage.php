@@ -3,7 +3,7 @@
 /**
  * Template Name: Front Page
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {

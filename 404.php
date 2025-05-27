@@ -3,7 +3,7 @@
 /**
  * The template for displaying 404
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {

@@ -1,13 +1,13 @@
 {
-    "name": "zealbase/theme",
+    "name": "wpnest/theme",
     "autoload": {
         "psr-4": {
-            "zealbase\\Theme\\": "src/"
+            "wpnest\\Theme\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "zealbase"
+            "name": "wpnest"
         }
     ],
     "require-dev": {

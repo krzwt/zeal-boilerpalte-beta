@@ -1,9 +1,9 @@
 <?php
 
 /**
- * zealbase functions and definitions
+ * WPNest functions and definitions
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {
@@ -19,7 +19,7 @@ if (! defined('_THEME_VERSION')) {
 /**
  * Define the default constant that will be used throughout your theme.
  */
-define('THEME_PREFIX', 'zealbase');
+define('THEME_PREFIX', 'wpnest');
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -28,7 +28,7 @@ define('THEME_PREFIX', 'zealbase');
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function zealbase_setup()
+function wpnest_setup()
 {
 
     /**
@@ -77,7 +77,7 @@ function zealbase_setup()
         'menu-2' => esc_html__('Secondary', 'textdomain'),
     ));
 }
-add_action('after_setup_theme', 'zealbase_setup');
+add_action('after_setup_theme', 'wpnest_setup');
 
 /**
  * Enqueue scripts and styles.

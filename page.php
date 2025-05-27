@@ -3,7 +3,7 @@
 /**
  * The template for displaying all pages
  *
- * @package ZealBase
+ * @package WPNest
  */
 
 if (!defined('ABSPATH')) {
@@ -31,7 +31,7 @@ get_header();
         ));
         ?>
 
-        <?php zealbase_edit_post_link(); ?>
+        <?php wpnest_edit_post_link(); ?>
 
     <?php endwhile; ?>
 
